@@ -319,8 +319,7 @@ DEPENDENCIES
   selenium-webdriver
   sprockets-rails
   stimulus-rails
-  tailwindcss-rails
-  tailwindcss-ruby
+  tailwindcss-rails (~> 4.3)
   turbo-rails
   tzinfo-data
   web-console
