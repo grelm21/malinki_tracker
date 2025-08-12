@@ -23,11 +23,6 @@ gem "turbo-rails"
 # Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
 gem "stimulus-rails"
 
-gem 'tailwindcss-ruby'
-
-# Use Tailwind CSS [https://github.com/rails/tailwindcss-rails]
-gem "tailwindcss-rails"
-
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
 
@@ -74,3 +69,5 @@ group :test do
 end
 
 gem 'devise', '~> 4.8.1'
+
+gem "tailwindcss-rails", "~> 4.3"
