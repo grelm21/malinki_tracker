@@ -21,7 +21,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_08_12_094541) do
     t.decimal "wage"
     t.text "comment"
     t.integer "length"
-    t.json "schedule"
+    t.text "schedule", default: [], array: true
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
