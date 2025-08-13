@@ -7,7 +7,7 @@ class CreateClassrooms < ActiveRecord::Migration[7.1]
       t.decimal :wage
       t.text :comment
       t.integer :length
-      t.json :schedule
+      t.text :schedule, array: true, default: []
 
       t.belongs_to :user, null: false, foreign_key: true
 

@@ -1,0 +1,28 @@
+<div class='classroom-wrapper'>
+  <div class='classroom-card'>
+    <div class="<%=classroom_status(classroom)%>">
+      <%= classroom.name %> (<%= classroom.class_format %>)
+    </div>
+    <div class='tags_wrapper'>
+      <div class='tag'>
+        <%= classroom.length%> мин.
+      </div>
+      <div class='tag'>
+        <%= classroom.schedule%>
+      </div>
+      <div class='tag'>
+        <%= classroom.wage %> руб.
+      </div>
+    </div>
+    <div class='classroom-control'>
+      <div class='icon-expand me-2'></div>
+      <div class='icon-add'></div>
+      <div class='icon-gear'></div>
+      <div class='icon-trash'></div>
+    </div>
+  </div>
+  <div class='students-wrapper'>
+    <%= render classroom.students %>
+    <div class='withdraw'>списать</div>
+  </div>
+</div>
