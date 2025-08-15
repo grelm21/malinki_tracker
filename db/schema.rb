@@ -46,15 +46,6 @@ ActiveRecord::Schema[7.1].define(version: 2025_08_12_094541) do
     t.index ["user_id"], name: "index_students_on_user_id"
   end
 
-  create_table "students_classrooms", force: :cascade do |t|
-    t.bigint "student_id"
-    t.bigint "classroom_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["classroom_id"], name: "index_students_classrooms_on_classroom_id"
-    t.index ["student_id"], name: "index_students_classrooms_on_student_id"
-  end
-
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false

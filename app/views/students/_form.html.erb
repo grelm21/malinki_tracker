@@ -1,0 +1,39 @@
+<% if action_name.eql? 'new' %>
+  <div class='font-bold'>Добавить нового ученика</div>
+<% end %>
+<%= form_with model: @student, class: '' do |form| %>
+  <div class='new-edit-wrapper'>
+    <div class="flex flex-1 flex-col gap-4">
+      <%= form.text_field :name, class: 'text-field', placeholder: 'имя ученика' %>
+      <div>Группа</div>
+      <div class='flex flex-row items-center gap-2'>
+        <%= form.select :classroom_id, options_from_collection_for_select(Classroom.all.where(class_format: :multi), :id, :name), { prompt: 'индивидуально' }, { class: 'text-field' } %>
+        <div class='icon-add-big'></div>
+      </div>
+      <div class='extra'>если планируются индивидуальные занятия с учеником, выбирайте "индивидуально" и продолжайте заполнение формы</div>
+      <div class='extra'>если планируются занятия в группе, то выберите группу из списка или создайте новую, нажав "+", после создания группы, ывы вернетесь к доавлению ученика</div>
+    </div>
+    <%= form.text_area :contact_details, class: 'text-field flex-2', placeholder: 'дополнительная информация' %>
+    <div class="flex flex-1 flex-col gap-4">
+      <div>
+        <%= form.number_field :wage, min: 0, step: 100, class: 'text-field', placeholder: 'стоимость урока' %>
+      </div>
+      <div>
+        <%= form.number_field :length, min: 0, step: 5, class: 'text-field', placeholder: 'длительность урока' %>
+      </div>
+      <div>Тип оплаты:</div>
+      <div class="flex items-center">
+        <%= form.radio_button :payment_type, 'single', checked: true, class: 'radio-checkbox' %>
+        <label for="student_payment_type_single" class="radio-label">разово</label>
+      </div>
+      <div class="flex items-center">
+        <%= form.radio_button :payment_type, 'pass', checked: false, class: 'radio-checkbox' %>
+        <label for="student_payment_type_pass" class="radio-label">абонемент</label>
+      </div>
+    </div>
+  </div>
+  <div class='flex flex-row gap-2 justify-end items-center'>
+    <%= link_to 'отмена', students_path, class: '' %>
+    <%= form.submit 'сохранить', class: 'cursor-pointer' %>
+  </div>
+<% end %>

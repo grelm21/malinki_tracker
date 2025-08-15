@@ -1,4 +1,6 @@
 @import "tailwindcss";
+@import "flowbite";
+
 
 .nav_base {
   @apply flex items-center justify-end w-full h-[64px] px-5 py-2 bg-purple-500 shadow-md rounded-b-lg md:rounded-b-none gap-5;
@@ -113,6 +115,16 @@
   background-size: contain;
 }
 
+.icon-add-big {
+  display: inline-block;
+  cursor: pointer;
+  width: 24px;
+  height: 24px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='black' viewBox='0 0 16 16'%3E%3Cpath d='M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16'/%3E%3Cpath d='M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
 .floating-button-wrapper {
   @apply absolute left-2 bottom-2 flex flex-row z-50 place-items-end gap-2;
 
@@ -131,4 +143,24 @@
   .menu-button {
     @apply hover:font-bold text-sm cursor-pointer;
   }
+}
+
+.new-edit-wrapper {
+  @apply flex flex-col sm:flex-row gap-y-2 gap-x-5 mt-2;
+}
+
+.text-field {
+  @apply flex border-0 focus:ring-0 border-b-2 focus:border-b-4 border-purple-800 w-full p-2 text-sm focus:outline-none placeholder:text-gray-400 bg-gray-50 h-full resize-none align-top whitespace-pre-wrap break-words;
+}
+
+.extra {
+  @apply text-sm text-gray-400 text-center;
+}
+
+.radio-checkbox {
+  @apply w-4 h-4 text-purple-600 bg-gray-100 border-gray-300 focus:ring-0
+}
+
+.radio-label {
+ @apply ms-2 text-sm font-medium text-gray-900
 }
