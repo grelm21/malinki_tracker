@@ -8,6 +8,7 @@
       <div>Группа</div>
       <div class='flex flex-row items-center gap-2'>
         <%= form.select :classroom_id, options_from_collection_for_select(Classroom.all.where(class_format: :multi), :id, :name), { prompt: 'индивидуально'}, { class: 'text-field', disabled: true  } %>
+        <%= form.hidden_field :classroom_id, value: '' %>
         <div class='icon-add-big'></div>
       </div>
       <div class='extra'>если планируются индивидуальные занятия с учеником, выбирайте "индивидуально" и продолжайте заполнение формы</div>
@@ -23,7 +24,7 @@
       </div>
       <div>Тип оплаты:</div>
       <div class="flex items-center">
-        <%= form.radio_button :payment_type, 'single', checked: true, class: 'radio-checkbox' %>
+        <%= form.radio_button :payment_type, 'regular', checked: true, class: 'radio-checkbox' %>
         <label for="student_payment_type_single" class="radio-label">разово</label>
       </div>
       <div class="flex items-center">
