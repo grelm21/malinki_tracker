@@ -18,7 +18,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_08_12_094541) do
     t.string "name"
     t.integer "status"
     t.integer "class_format"
-    t.decimal "wage"
+    t.bigint "wage"
     t.text "comment"
     t.integer "length"
     t.text "schedule", default: [], array: true

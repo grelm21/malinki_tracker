@@ -4,7 +4,7 @@ class CreateClassrooms < ActiveRecord::Migration[7.1]
       t.string :name
       t.integer :status
       t.integer :class_format
-      t.decimal :wage
+      t.bigint :wage
       t.text :comment
       t.integer :length
       t.text :schedule, array: true, default: []

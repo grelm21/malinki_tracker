@@ -7,7 +7,7 @@
       <%= form.text_field :name, class: 'text-field', placeholder: 'имя ученика' %>
       <div>Группа</div>
       <div class='flex flex-row items-center gap-2'>
-        <%= form.select :classroom_id, options_from_collection_for_select(Classroom.all.where(class_format: :multi), :id, :name), { prompt: 'индивидуально' }, { class: 'text-field' } %>
+        <%= form.select :classroom_id, options_from_collection_for_select(Classroom.all.where(class_format: :multi), :id, :name), { prompt: 'индивидуально'}, { class: 'text-field', disabled: true  } %>
         <div class='icon-add-big'></div>
       </div>
       <div class='extra'>если планируются индивидуальные занятия с учеником, выбирайте "индивидуально" и продолжайте заполнение формы</div>
