@@ -1,7 +1,7 @@
 <% if action_name.eql? 'new' %>
   <div class='font-bold'>Добавить нового ученика</div>
 <% end %>
-<%= form_with model: @student, class: '' do |form| %>
+<%= form_with model: [current_user.teacher, @student], class: '' do |form| %>
   <div class='new-edit-wrapper'>
     <div class="flex flex-1 flex-col gap-4">
       <%= form.text_field :name, class: 'text-field', placeholder: 'имя ученика' %>
@@ -34,7 +34,7 @@
     </div>
   </div>
   <div class='flex flex-row gap-2 justify-end items-center'>
-    <%= link_to 'отмена', students_path, class: '' %>
+    <%= link_to 'отмена', root_path, class: '' %>
     <%= form.submit 'сохранить', class: 'cursor-pointer' %>
   </div>
 <% end %>

@@ -2,7 +2,9 @@ Rails.application.routes.draw do
   devise_for :users
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
-  resources :students
+  resources :teachers, shallow: true do
+    resources :students
+  end
   resources :classrooms
 
   get 'dashboard', to: 'pages#dashboard'

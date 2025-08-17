@@ -1,5 +1,5 @@
 class Classroom < ApplicationRecord
-  belongs_to :user, dependent: :destroy
+  belongs_to :teacher, dependent: :destroy
   has_many :classrooms_students
   has_many :students, through: :classrooms_students
 

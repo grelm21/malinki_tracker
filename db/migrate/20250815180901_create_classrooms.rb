@@ -9,7 +9,7 @@ class CreateClassrooms < ActiveRecord::Migration[7.1]
       t.integer :length
       t.text :schedule, array: true, default: []
 
-      t.belongs_to :user, null: false, foreign_key: true
+      t.belongs_to :teacher, null: false, foreign_key: true
 
       t.timestamps
     end
