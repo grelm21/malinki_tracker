@@ -4,7 +4,7 @@
   </div>
   <div class='menu'>
     <div class='menu-button'>добавть класс</div>
-    <div class='menu-button'>добавить студента</div>
+    <%= link_to 'добавить студента', new_teacher_student_path(current_user.teacher), class: 'menu-button' %>
     <div class='menu-button'>настройки</div>
     <div class='menu-button'>cтатистика</div>
   </div>
