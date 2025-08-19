@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   resources :teachers, shallow: true do
     resources :students
+    resources :withdrawals, only: %i[new create]
   end
 
   resources :deposits, only: %i[new create]

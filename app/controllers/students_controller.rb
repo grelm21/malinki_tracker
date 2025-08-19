@@ -8,8 +8,8 @@ class StudentsController < ApplicationController
 
   def show
     @student = Student.find(params[:id])
-    @classrooms = @student.classrooms.where(teacher: current_user.teacher)
-    @classrooms_student = @student.classrooms_students.find_by(classroom: @classrooms, student: @student)
+    @classrooms = @student.classrooms
+    @left_deposits = LeftDepositService.new(@classrooms).call
   end
 
   def create

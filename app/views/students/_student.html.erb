@@ -1,6 +1,6 @@
 <div class='student-wrapper'>
   <div class="name"><%= student.name %>, </div>
-  <% unless action_name.eql? 'show' %>
+  <% if action_name.eql? :classroom %>
     <%= link_to 'подробнее', student %>
     <div>остаток: <%= humanized_money_with_symbol @left_deposits[classrooms_students_id_from_classroom(classroom, student)] %></div>
     <input type="checkbox" class="checkbox">
@@ -8,10 +8,17 @@
   <% if action_name.eql? 'show' %>
     <% @classrooms.each do |classroom| %>
       <div><%= classroom.name %></div>
-      <% if @classrooms_student.pass? %>
-        <div>остаток: <%= humanized_money_with_symbol @left_deposits[2] %></div>
-      <% end %>
+      <div>остаток: <%= humanized_money_with_symbol @left_deposits[classrooms_students_id_from_classroom(classroom, student)] %></div>
+      <div>последние оплаты:</div>
+      <div class="deposits-wrapper">
+        <%= render classroom.classrooms_students.where(student:).first.deposits.limit(4) %>
+      </div>
+      <div>последние списания:</div>
+      <div class="withdrawals-wrapper">
+        <%= render classroom.classrooms_students.where(student:).first.withdrawals %>
+      </div>
       <%= link_to 'добавить оплату', new_deposit_path(student_id: student.id, classroom_id: classroom.id), class: 'add-deposit' %>
+      <%= link_to 'списать', new_teacher_withdrawal_path(classroom.teacher, student_id: student.id, classroom_id: classroom.id), class: 'add-deposit' %>
     <% end %>
   <% end %>
 </div>

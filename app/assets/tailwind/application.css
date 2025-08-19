@@ -1,7 +1,6 @@
 @import "tailwindcss";
 @import "flowbite";
 
-
 .nav_base {
   @apply flex items-center justify-end w-full h-[64px] px-5 py-2 bg-purple-500 shadow-md rounded-b-lg md:rounded-b-none gap-5;
 
@@ -158,9 +157,25 @@
 }
 
 .radio-checkbox {
-  @apply w-4 h-4 text-purple-600 bg-gray-100 border-gray-300 focus:ring-0
+  @apply w-4 h-4 text-purple-600 bg-gray-100 border-gray-300 focus:ring-0;
 }
 
 .radio-label {
- @apply ms-2 text-sm font-medium text-gray-900
+  @apply ms-2 text-sm font-medium text-gray-900;
+}
+
+.deposits-wrapper {
+  @apply grid grid-cols-1 xl:grid-cols-4 gap-x-5 gap-y-7;
+}
+
+.deposit-card {
+  @apply bg-purple-600 text-xl px-2 text-white;
+}
+
+.withdrawals-wrapper {
+  @apply grid grid-cols-1 xl:grid-cols-4 gap-x-5 gap-y-7;
+}
+
+.withdrawal-card {
+  @apply bg-purple-400 text-xl px-2 text-white;
 }
