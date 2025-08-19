@@ -1,8 +1,17 @@
 <div class='student-wrapper'>
   <div class="name"><%= student.name %>, </div>
-  <div>остаток: 3900 руб. (3)</div>
   <% unless action_name.eql? 'show' %>
     <%= link_to 'подробнее', student %>
+    <div>остаток: <%= humanized_money_with_symbol @left_deposits[classrooms_students_id_from_classroom(classroom, student)] %></div>
     <input type="checkbox" class="checkbox">
+  <% end %>
+  <% if action_name.eql? 'show' %>
+    <% @classrooms.each do |classroom| %>
+      <div><%= classroom.name %></div>
+      <% if @classrooms_student.pass? %>
+        <div>остаток: <%= humanized_money_with_symbol @left_deposits[2] %></div>
+      <% end %>
+      <%= link_to 'добавить оплату', new_deposit_path(student_id: student.id, classroom_id: classroom.id), class: 'add-deposit' %>
+    <% end %>
   <% end %>
 </div>

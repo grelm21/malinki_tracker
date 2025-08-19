@@ -71,3 +71,4 @@ end
 gem 'devise', '~> 4.8.1'
 
 gem "tailwindcss-rails", "~> 4.3"
+gem 'money-rails', '~> 1.12'

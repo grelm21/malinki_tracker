@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   resources :teachers, shallow: true do
     resources :students
   end
+
+  resources :deposits, only: %i[new create]
   resources :classrooms
 
   get 'dashboard', to: 'pages#dashboard'

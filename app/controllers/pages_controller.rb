@@ -1,8 +1,10 @@
 class PagesController < ApplicationController
   before_action :authenticate_user!
   def dashboard
-    # @classrooms = Classroom.all
     @teacher = current_user.teacher
-    @classrooms = @teacher.classrooms.all
+
+    # TODO: перенести в отдельный сервис после дебага
+    @classrooms = @teacher.classrooms.includes(:students)
+    @left_deposits = LeftDepositService.new(@classrooms).call
   end
 end

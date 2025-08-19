@@ -9,7 +9,7 @@
         <%= classroom.schedule%>
       </div>
       <div class='tag'>
-        <%= classroom.wage %> руб.
+        <%= humanized_money_with_symbol classroom.wage %>
       </div>
     </div>
     <div class='classroom-control'>
@@ -20,7 +20,7 @@
     </div>
   </div>
   <div class='students-wrapper'>
-    <%= render classroom.students %>
+    <%= render classroom.students, classroom: classroom %>
     <div class='withdraw'>списать</div>
   </div>
 </div>
