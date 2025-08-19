@@ -3,7 +3,7 @@
   <% if action_name.eql? :classroom %>
     <%= link_to 'подробнее', student %>
     <div>остаток: <%= humanized_money_with_symbol @left_deposits[classrooms_students_id_from_classroom(classroom, student)] %></div>
-    <input type="checkbox" class="checkbox">
+    <%= chb.check_box class: 'checkbox', checked: true %>
   <% end %>
   <% if action_name.eql? 'show' %>
     <% @classrooms.each do |classroom| %>

@@ -16,6 +16,9 @@ class WithdrawalsController < ApplicationController
     end
   end
 
+  def create_collection
+  end
+
   private
 
   def withdrawal_params
