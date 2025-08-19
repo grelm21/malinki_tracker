@@ -1,8 +1,8 @@
-<%= form_with model: [@deposit] do |form| %>
+<%= form_with model: [deposit] do |form| %>
   <div class='new-edit-wrapper'>
     <%= form.text_field :amount, class: 'text-field', placeholder: 'сумма' %>
-    <%= form.date_field :issued_at, class: 'text-field'%>
-    <%= form.hidden_field :classrooms_student_id, value: @classrooms_student.id %>
+    <%= form.date_field :issued_at, value: Date.today, class: 'text-field'%>
+    <%= form.hidden_field :classrooms_student_id, value: classrooms_student.id %>
     <%= form.submit 'Добавить' %>
   </div>
 <% end %>

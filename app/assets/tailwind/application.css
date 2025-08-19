@@ -179,3 +179,7 @@
 .withdrawal-card {
   @apply bg-purple-400 text-xl px-2 text-white;
 }
+
+.student-show-classrom-card {
+  @apply bg-purple-50 rounded-lg shadow-sm px-5 py-2;
+}
