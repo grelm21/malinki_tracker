@@ -4,7 +4,7 @@ class Withdrawal < ApplicationRecord
 
   monetize :amount_cents
 
-  scope :total_withdrawals_for_classrooms_student, ->(cs_ids) {
+  scope :total_withdrawals_for_classrooms_student, lambda { |cs_ids|
     ClassroomsStudent.where(id: cs_ids)
                      .left_outer_joins(:withdrawals)
                      .group(:id)

@@ -22,7 +22,7 @@
   <div class='students-wrapper'>
     <div>
       <%= form_with url: create_collection_teacher_withdrawals_path(current_user.teacher), method: :post, scope: :withdrawal do |form| %>
-        <%= form.collection_check_boxes :classrooms_student_ids, classroom.classrooms_students, :id, :id, {}, { class: 'grid grid-flow-row justify-end'} do |chb| %>
+        <%= form.collection_check_boxes :classrooms_student_ids, classroom.classrooms_students, :id, :id, { include_hidden: false }, { class: 'grid grid-flow-row justify-end'} do |chb| %>
           <div class='flex justify-end'>
             <%= render chb.object.student, classroom: classroom, action_name: :classroom, chb: %>
           </div>

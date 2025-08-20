@@ -1,7 +1,7 @@
 class WithdrawalsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_classrooms_student, only: %i[new]
-  before_action :set_teacher, only: %i[new create]
+  before_action :set_teacher, only: %i[new create create_collection]
 
   def new
     @withdrawal = @teacher.withdrawals.new
@@ -17,12 +17,26 @@ class WithdrawalsController < ApplicationController
   end
 
   def create_collection
+    @withdrawals = @teacher.withdrawals.create(withdrawal_collection_params)
+    p @withdrawals.map(&:errors)
+
+    if @withdrawals.save!
+      redirect_to root_path
+    else
+      redirect_to root_path
+    end
   end
 
   private
 
   def withdrawal_params
-    params.require(:withdrawal).permit(:amount, :classrooms_student_id, :issued_at)
+    params.require(:withdrawal).permit(:amount, :issued_at, :classrooms_student_id)
+  end
+
+  def withdrawal_collection_params
+    params[:withdrawal][:classrooms_student_ids].map do |cs_id|
+      withdrawal_params.merge!(classrooms_student_id: cs_id)
+    end
   end
 
   def set_classrooms_student
