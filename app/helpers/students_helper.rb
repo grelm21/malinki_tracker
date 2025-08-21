@@ -1,10 +1,10 @@
 module StudentsHelper
-  def classrooms_students_id_from_classroom(classroom, student)
+  def classrooms_students_from_classroom(classroom, student)
     classroom.classrooms_students.select { |cs| cs.student_id.eql?(student.id) }.first
   end
 
   def show_left_deposit(left_deposits, classroom, student)
-    left_deposits[classrooms_students_id_from_classroom(classroom, student).id]
+    left_deposits[classrooms_students_from_classroom(classroom, student).id]
   end
 
   def sufficient_deposit?(left_deposits, classroom, student, classroom_wage)

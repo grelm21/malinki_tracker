@@ -23,7 +23,8 @@
         <% end %>
         <div class='new-edit-wrapper'>
           <%= form.text_field :amount, value: classroom.wage, class: 'text-field', placeholder: 'сумма' %>
-          <%= form.date_field :issued_at, value: Date.today, class: 'text-field'%>
+          <%= form.date_field :issued_at, value: Date.today, class: 'text-field', disabled: true %>
+          <%= form.hidden_field :issued_at, value: Date.today %>
           <%= form.submit 'списать', class: "withdraw" %>
         </div>
       <% end %>
