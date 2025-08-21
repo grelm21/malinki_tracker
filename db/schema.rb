@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_08_15_181026) do
+ActiveRecord::Schema[7.1].define(version: 2025_08_17_153310) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -18,7 +18,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_08_15_181026) do
     t.string "name"
     t.integer "status"
     t.integer "class_format"
-    t.bigint "wage"
+    t.bigint "wage_cents"
     t.text "comment"
     t.integer "length"
     t.text "schedule", default: [], array: true
@@ -36,6 +36,15 @@ ActiveRecord::Schema[7.1].define(version: 2025_08_15_181026) do
     t.datetime "updated_at", null: false
     t.index ["classroom_id"], name: "index_classrooms_students_on_classroom_id"
     t.index ["student_id"], name: "index_classrooms_students_on_student_id"
+  end
+
+  create_table "deposits", force: :cascade do |t|
+    t.bigint "amount_cents"
+    t.datetime "issued_at"
+    t.bigint "classrooms_student_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["classrooms_student_id"], name: "index_deposits_on_classrooms_student_id"
   end
 
   create_table "students", force: :cascade do |t|
@@ -75,8 +84,22 @@ ActiveRecord::Schema[7.1].define(version: 2025_08_15_181026) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "withdrawals", force: :cascade do |t|
+    t.bigint "amount_cents"
+    t.datetime "issued_at"
+    t.bigint "classrooms_student_id", null: false
+    t.bigint "teacher_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["classrooms_student_id"], name: "index_withdrawals_on_classrooms_student_id"
+    t.index ["teacher_id"], name: "index_withdrawals_on_teacher_id"
+  end
+
   add_foreign_key "classrooms", "teachers"
+  add_foreign_key "deposits", "classrooms_students"
   add_foreign_key "students", "users"
   add_foreign_key "students_teachers", "students"
   add_foreign_key "students_teachers", "teachers"
+  add_foreign_key "withdrawals", "classrooms_students"
+  add_foreign_key "withdrawals", "teachers"
 end

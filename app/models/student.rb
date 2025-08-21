@@ -6,10 +6,12 @@ class Student < ApplicationRecord
   has_and_belongs_to_many :teachers
 
   attribute :classroom_id, type: :string, default: nil
-  attribute :wage, default: 0
+  attribute :wage_cents, default: 0
   attribute :length, default: 0
   attribute :payment_type, default: 'regular'
   attribute :schedule, default: []
+
+  monetize :wage_cents
 
   validates :name, presence: true
 
@@ -19,17 +21,12 @@ class Student < ApplicationRecord
   private
 
   def create_classroom
-    p teachers.first.inspect
-    classroom = Classroom.create!(name:, wage:, length:, schedule:,
+    classroom = Classroom.create!(name:, wage_cents:, length:, schedule:,
                                   teacher_id: teachers.first.id)
     ClassroomsStudent.create!(student: self, classroom:, payment_type:)
   end
 
   def create_user
     User.create!(login: name, password: '123456')
-  end
-
-  def add_teacher
-    p teacher
   end
 end

@@ -4,7 +4,14 @@ Rails.application.routes.draw do
 
   resources :teachers, shallow: true do
     resources :students
+    resources :withdrawals, only: %i[new create] do
+      collection do
+        post :create_collection
+      end
+    end
   end
+
+  resources :deposits, only: %i[new create]
   resources :classrooms
 
   get 'dashboard', to: 'pages#dashboard'

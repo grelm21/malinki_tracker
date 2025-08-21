@@ -17,7 +17,7 @@
     <%= form.text_area :contact_details, class: 'text-field flex-2', placeholder: 'дополнительная информация' %>
     <div class="flex flex-1 flex-col gap-4">
       <div>
-        <%= form.number_field :wage, min: 0, step: 100, class: 'text-field', placeholder: 'стоимость урока' %>
+        <%= form.text_field :wage, class: 'text-field', placeholder: 'стоимость урока' %>
       </div>
       <div>
         <%= form.number_field :length, min: 0, step: 5, class: 'text-field', placeholder: 'длительность урока' %>

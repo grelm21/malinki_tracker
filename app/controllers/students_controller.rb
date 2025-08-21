@@ -8,6 +8,11 @@ class StudentsController < ApplicationController
 
   def show
     @student = Student.find(params[:id])
+
+    # student_policy
+    @classrooms = @student.classrooms.where(teacher: current_user.teacher)
+
+    @left_deposits = LeftDepositService.new(@classrooms).call
   end
 
   def create
@@ -19,6 +24,7 @@ class StudentsController < ApplicationController
       render :new
     end
   end
+
   private
 
   def student_params
