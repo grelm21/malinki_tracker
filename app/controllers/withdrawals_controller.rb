@@ -9,6 +9,7 @@ class WithdrawalsController < ApplicationController
 
   def create
     @withdrawal = @teacher.withdrawals.build(withdrawal_params)
+
     if @withdrawal.save
       redirect_to root_path
     else
@@ -18,13 +19,8 @@ class WithdrawalsController < ApplicationController
 
   def create_collection
     @withdrawals = @teacher.withdrawals.create(withdrawal_collection_params)
-    p @withdrawals.map(&:errors)
 
-    if @withdrawals.save!
-      redirect_to root_path
-    else
-      redirect_to root_path
-    end
+    redirect_to root_path
   end
 
   private

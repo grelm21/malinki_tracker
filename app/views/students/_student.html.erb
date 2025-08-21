@@ -1,26 +1,36 @@
 <div class='student-wrapper'>
-  <div class="name"><%= student.name %>, </div>
   <% if action_name.eql? :classroom %>
-    <%= link_to 'подробнее', student %>
-    <div>остаток: <%= humanized_money_with_symbol @left_deposits[classrooms_students_id_from_classroom(classroom, student)] %></div>
-    <%= chb.check_box class: 'checkbox', checked: true %>
+    <%= link_to student, class: "flex items-center gap-x-2" do %>
+      <div class="name"><%= student.name %>, </div>
+      <% if classrooms_students_id_from_classroom(classroom, student).pass? %>
+        <div class="<%= classroom_student_decorator(@left_deposits, classroom, student, classroom.wage) %>">остаток депозита: <%= humanized_money_with_symbol show_left_deposit(@left_deposits, classroom, student) %></div>
+        <%= chb.check_box class: 'checkbox', checked: sufficient_deposit?(@left_deposits, classroom, student, classroom.wage), disabled: !sufficient_deposit?(@left_deposits, classroom, student, classroom.wage) %>
+      <% end %>
+      <% if classrooms_students_id_from_classroom(classroom, student).regular? %>
+        <div class="">разовая оплата: <%= humanized_money_with_symbol classroom.wage %></div>
+        <%= chb.check_box class: 'checkbox', checked: true %>
+      <% end %>
+    <% end %>
   <% end %>
   <% if action_name.eql? 'show' %>
-    <% @classrooms.each do |classroom| %>
-      <div class="student-show-classrom-card">
-        <div class="font-bold"><%= classroom.name %></div>
-        <div>остаток: <%= humanized_money_with_symbol @left_deposits[classrooms_students_id_from_classroom(classroom, student)] %></div>
-        <div>последние оплаты:</div>
-        <div class="deposits-wrapper">
-          <%= render classroom.classrooms_students.where(student:).first.deposits.limit(4) %>
+    <div class="name"><%= student.name %></div>
+    <div class="grid grid-flow-row gap-y-4">
+      <% @classrooms.each do |classroom| %>
+        <div class="student-show-classrom-card">
+          <div class="font-bold"><%= classroom.name %></div>
+          <div>остаток: <%= humanized_money_with_symbol @left_deposits[classrooms_students_id_from_classroom(classroom, student)] %></div>
+          <div>последние оплаты:</div>
+          <div class="deposits-wrapper">
+            <%= render classroom.classrooms_students.where(student:).first.deposits.limit(4) %>
+          </div>
+          <%= render 'deposits/form', classrooms_student: student.classrooms_students.select{ |cs| cs.classroom_id.eql?(classroom.id)}.first, deposit: Deposit.new %>
+          <div>последние списания:</div>
+          <div class="withdrawals-wrapper">
+            <%= render classroom.classrooms_students.where(student:).first.withdrawals %>
+          </div>
+          <%= render 'withdrawals/form', classrooms_student: student.classrooms_students.select{ |cs| cs.classroom_id.eql?(classroom.id)}.first, withdrawal: Withdrawal.new, teacher: classroom.teacher %>
         </div>
-        <%= render 'deposits/form', classrooms_student: student.classrooms_students.select{ |cs| cs.classroom_id.eql?(classroom.id)}.first, deposit: Deposit.new %>
-        <div>последние списания:</div>
-        <div class="withdrawals-wrapper">
-          <%= render classroom.classrooms_students.where(student:).first.withdrawals %>
-        </div>
-        <%= render 'withdrawals/form', classrooms_student: student.classrooms_students.select{ |cs| cs.classroom_id.eql?(classroom.id)}.first, withdrawal: Withdrawal.new, teacher: classroom.teacher %>
-      </div>
-    <% end %>
+      <% end %>
+    </div>
   <% end %>
 </div>
