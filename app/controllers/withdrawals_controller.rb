@@ -11,7 +11,7 @@ class WithdrawalsController < ApplicationController
     @withdrawal = @teacher.withdrawals.build(withdrawal_params)
 
     if @withdrawal.save
-      redirect_to root_path
+      redirect_to @withdrawal.classrooms_student.student, notice: 'Списание создано'
     else
       render :new
     end
