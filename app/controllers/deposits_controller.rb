@@ -8,7 +8,7 @@ class DepositsController < ApplicationController
   def create
     @deposit = Deposit.build(deposit_params)
     if @deposit.save!
-      redirect_to root_path
+      redirect_to @deposit.classrooms_student.student, notice: 'Депозит создан'
     else
       render :new
     end
