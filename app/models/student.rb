@@ -15,7 +15,7 @@ class Student < ApplicationRecord
 
   validates :name, presence: true
 
-  before_create :create_user
+  after_create_commit :create_user
   after_create_commit :create_classroom, if: -> { classroom_id.eql?('') }
 
   private
@@ -27,6 +27,8 @@ class Student < ApplicationRecord
   end
 
   def create_user
-    User.create!(login: name, password: '123456')
+    password = rand(1000..9999).to_s
+    User.create!(login: "student#{id}", password:)
+    update!(saved_password: password)
   end
 end
