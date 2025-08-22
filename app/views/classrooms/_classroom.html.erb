@@ -6,7 +6,7 @@
         <%= classroom.length%> мин.
       </div>
       <div class='tag'>
-        <%= classroom.schedule%>
+        <%= classroom.schedule.map { |d| t('date.abbr_day_names')[d.to_i] }.join(" ") %>
       </div>
       <div class='tag'>
         <%= humanized_money_with_symbol classroom.wage %>
@@ -22,7 +22,7 @@
           </div>
         <% end %>
         <div class='new-edit-wrapper'>
-          <%= form.text_field :amount, value: classroom.wage, class: 'text-field', placeholder: 'сумма' %>
+          <%= form.text_field :amount, value: humanized_money(classroom.wage), class: 'text-field', placeholder: 'сумма' %>
           <%= form.date_field :issued_at, value: Date.today, class: 'text-field', disabled: true %>
           <%= form.hidden_field :issued_at, value: Date.today %>
           <%= form.submit 'списать', class: "withdraw" %>

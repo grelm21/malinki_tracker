@@ -1,3 +1,3 @@
 <div class='deposit-card'>
-  <div><%= deposit.issued_at %>: <%= humanized_money_with_symbol deposit.amount %></div>
+  <div><%= l(deposit.issued_at.to_date, format: :default) %>: <%= humanized_money_with_symbol deposit.amount %></div>
 </div>
