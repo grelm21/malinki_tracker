@@ -1,0 +1,17 @@
+<%= form_with url: create_collection_teacher_withdrawals_path(current_user.teacher), method: :post, scope: :withdrawal do |form| %>
+  <%= form.collection_check_boxes :classrooms_student_ids, classroom.classrooms_students, :id, :id, { include_hidden: false }, { class: 'grid grid-flow-row justify-end'} do |chb| %>
+    <div class='flex justify-end'>
+      <%= render chb.object.student, classroom: classroom, action_name: :classroom, chb: %>
+    </div>
+  <% end %>
+  <div class='new-edit-wrapper'>
+    <div class='fles h-full items-center'>
+      <%= form.text_field :amount, value: humanized_money(classroom.wage), class: 'text-field', placeholder: 'сумма' %>
+    </div>
+    <%= form.date_field :issued_at, value: Date.today, class: 'text-field', disabled: true %>
+    <%= form.hidden_field :issued_at, value: Date.today %>
+    <div class='items-center justify-end'>
+      <%= form.submit 'списать', class: "submit-button" %>
+    </div>
+  </div>
+<% end %>
