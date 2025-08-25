@@ -4,11 +4,9 @@
       <%= render chb.object.student, classroom: classroom, action_name: :classroom, chb: %>
     </div>
   <% end %>
-  <div class='new-edit-wrapper'>
-    <div class='fles h-full items-center'>
+  <div class='new-edit-wrapper items-end justify-end'>
       <%= form.text_field :amount, value: humanized_money(classroom.wage), class: 'text-field', placeholder: 'сумма' %>
-    </div>
-    <%= form.date_field :issued_at, value: Date.today, class: 'text-field', disabled: true %>
+      <%= form.date_field :issued_at, value: Date.today, class: 'text-field', disabled: true %>
     <%= form.hidden_field :issued_at, value: Date.today %>
     <div class='items-center justify-end'>
       <%= form.submit 'списать', class: "submit-button" %>
