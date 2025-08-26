@@ -61,7 +61,7 @@ nav {
 }
 
 .tags_wrapper {
-  @apply flex flex-row gap-2 items-center mt-2 justify-center;
+  @apply flex gap-2 items-center mt-2;
 }
 
 .classroom-control {
@@ -189,7 +189,7 @@ nav {
 }
 
 .new-edit-wrapper {
-  @apply flex flex-col sm:flex-row gap-y-2 gap-x-5 mt-2;
+  @apply flex flex-col sm:flex-row gap-y-2 gap-x-5 mt-2 justify-end;
 }
 
 .text-field {
@@ -213,7 +213,7 @@ nav {
 }
 
 .deposit-card {
-  @apply bg-purple-600 text-xl px-2 text-white;
+  @apply bg-accent text-xl px-2 text-white;
 }
 
 .withdrawals-wrapper {
@@ -221,9 +221,9 @@ nav {
 }
 
 .withdrawal-card {
-  @apply bg-purple-400 text-xl px-2 text-white;
+  @apply bg-accent text-xl px-2 text-white;
 }
 
 .student-show-classrom-card {
-  @apply bg-purple-50 rounded-lg shadow-sm px-5 py-2;
+  @apply flex flex-col bg-primary rounded-lg shadow-sm px-5 py-2 gap-y-2;
 }
