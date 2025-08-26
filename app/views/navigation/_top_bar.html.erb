@@ -1,7 +1,7 @@
-<div class='nav_base'>
+<nav class=''>
   <%= link_to 'M-Tracker', root_path, class: 't-white' %>
   <div class='t-white'><%= current_user.login %></div>
   <%= button_to destroy_user_session_path, method: :delete do %>
     <div class='icon-sign-out'></div>
   <%end%>
-</div>
+</nav>

@@ -69,6 +69,7 @@ group :test do
 end
 
 gem 'devise', '~> 4.8.1'
+gem 'devise-i18n'
 
 gem "tailwindcss-rails", "~> 4.3"
 gem 'money-rails', '~> 1.12'

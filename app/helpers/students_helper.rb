@@ -14,6 +14,6 @@ module StudentsHelper
   end
 
   def classroom_student_decorator(left_deposits, classroom, student, classroom_wage)
-    'text-red-500'.html_safe unless sufficient_deposit?(left_deposits, classroom, student, classroom_wage)
+    'text-warning'.html_safe unless sufficient_deposit?(left_deposits, classroom, student, classroom_wage)
   end
 end

@@ -1,4 +1,4 @@
-user = User.create(login: 'Grigorii', email: 'ex@ya.ru', password: '123456')
+user = User.create(login: 'Grigorii', email: 'ex@ya.ru', password: '123456', approved: true)
 teacher = user.teacher
 
 classroom = teacher.classrooms.create!(name: 'Егор', wage_cents: 120000, length: 60, schedule: %w[1 3])

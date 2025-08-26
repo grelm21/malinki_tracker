@@ -1,33 +1,23 @@
-<div class='classroom-wrapper'>
-  <div class='classroom-card'>
-    <div><%= link_to classroom.name, classroom_path(classroom), class: "#{classroom_status(classroom)}" %></div>
-    <div class='tags_wrapper'>
-      <div class='tag'>
-        <%= classroom.length%> мин.
-      </div>
-      <div class='tag'>
-        <%= classroom.schedule.map { |d| t('date.abbr_day_names')[d.to_i] }.join(" ") %>
-      </div>
-      <div class='tag'>
-        <%= humanized_money_with_symbol classroom.wage %>
+<div>
+  <div class='classroom-wrapper'>
+    <div class='classroom-card'>
+      <div><%= link_to classroom.name, classroom_path(classroom), class: "#{classroom_status(classroom)}" %></div>
+      <div class='tags_wrapper justify-center'>
+        <div class='tag'>
+          <%= classroom.length%> мин.
+        </div>
+        <div class='tag'>
+          <%= classroom.schedule.map { |d| t('date.abbr_day_names')[d.to_i] }.join(" ") %>
+        </div>
+        <div class='tag'>
+          <%= humanized_money_with_symbol classroom.wage %>
+        </div>
       </div>
     </div>
-  </div>
-  <div class='students-wrapper'>
-    <div>
-      <%= form_with url: create_collection_teacher_withdrawals_path(current_user.teacher), method: :post, scope: :withdrawal do |form| %>
-        <%= form.collection_check_boxes :classrooms_student_ids, classroom.classrooms_students, :id, :id, { include_hidden: false }, { class: 'grid grid-flow-row justify-end'} do |chb| %>
-          <div class='flex justify-end'>
-            <%= render chb.object.student, classroom: classroom, action_name: :classroom, chb: %>
-          </div>
-        <% end %>
-        <div class='new-edit-wrapper'>
-          <%= form.text_field :amount, value: humanized_money(classroom.wage), class: 'text-field', placeholder: 'сумма' %>
-          <%= form.date_field :issued_at, value: Date.today, class: 'text-field', disabled: true %>
-          <%= form.hidden_field :issued_at, value: Date.today %>
-          <%= form.submit 'списать', class: "withdraw" %>
-        </div>
-      <% end %>
+    <div class='students-wrapper'>
+      <div>
+        <%= render "withdrawals/collection_form", classroom: %>
+      </div>
     </div>
   </div>
 </div>

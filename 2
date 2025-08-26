@@ -1,28 +1,15 @@
 @import "tailwindcss";
 @import "flowbite";
 
-@theme {
-  --color-background: #fdfcfb; /* теплый светлый фон, почти белый */
-  --color-primary: #e5e7eb; /* светлый серо-бежевый (warm gray-200) */
-  --color-secondary: #cbd5e1; /* мягкий серо-голубой (slate-300) */
-  --color-accent: #334155; /* глубокий navy/slate-700 */
-  --color-accent-light: #fcd34d; /* оливково-хаки с золотистым оттенком */
-  --color-text-dark: #1e293b; /* тёмно-графитовый текст */
-  --color-text-light: #ffffff; /* белый для контрастных элементов */
-  --color-alert: #dc2626; /* красный для ошибок */
-  --color-warning: #d97706; /* янтарный для предупреждений */
-  --color-info: #2563eb; /* синий для инфо-меток */
-}
-
-body {
-  @apply bg-background;
+@thema {
+  --color-midnight: #121063;
 }
 
 nav {
-  @apply flex items-center justify-end w-full h-[64px] px-5 py-2 shadow-md rounded-b-lg md:rounded-b-none gap-5 bg-accent;
+  @apply flex items-center justify-end w-full h-[64px] px-5 py-2 shadow-md rounded-b-lg md:rounded-b-none gap-5 bg-color-midnight;
 
   .t-white {
-    @apply text-text-light font-bold text-xl;
+    @apply text-white font-bold text-xl;
   }
 
   .icon-sign-out {
@@ -42,70 +29,53 @@ nav {
 
 .classrooms_wrapper {
   @apply grid grid-cols-1 xl:grid-cols-2 gap-x-5 gap-y-7;
-}
 
-.classroom-wrapper {
-  @apply grid grid-flow-row;
-}
-
-.classroom-card {
-  @apply relative shadow-sm bg-primary p-5 flex flex-col justify-between hover:bg-secondary;
-}
-
-.classroom-name {
-  @apply absolute -top-2 -left-2 bg-accent text-xl px-2 text-text-light;
-}
-
-.classroom-name-inactive {
-  @apply absolute -top-2 -left-2 bg-gray-400 text-xl px-2 text-white;
-}
-
-.tags_wrapper {
-  @apply flex gap-2 items-center mt-2;
-}
-
-.classroom-control {
-  @apply absolute flex -bottom-2 -right-2 bg-purple-900 items-center justify-center rounded-sm px-1 py-1 gap-x-1;
-}
-
-.students-wrapper {
-  @apply flex flex-col gap-y-2 gap-x-5 mt-2;
-}
-
-.student-wrapper {
-  @apply flex flex-row gap-x-2 items-center justify-end;
-
-  .name {
-    @apply font-semibold;
+  .classroom-wrapper {
+    @apply grid grid-flow-row;
   }
 
-  .button {
-    @apply text-purple-500 hover:text-purple-600 hover:font-bold text-sm cursor-pointer;
+  .classroom-card {
+    @apply relative shadow-sm bg-purple-50 p-5 flex flex-col justify-between hover:bg-purple-100 hover:-m-1;
   }
-}
-.withdraw {
-  @apply text-secondary hover:text-accent hover:font-bold text-sm cursor-pointer text-end;
+
+  .classroom-name {
+    @apply absolute -top-2 -left-2 bg-purple-600 text-xl px-2 text-white;
+  }
+
+  .classroom-name-inactive {
+    @apply absolute -top-2 -left-2 bg-gray-400 text-xl px-2 text-white;
+  }
+
+  .tags_wrapper {
+    @apply flex flex-row gap-2 items-center mt-2 justify-center;
+  }
+
+  .classroom-control {
+    @apply absolute flex -bottom-2 -right-2 bg-purple-900 items-center justify-center rounded-sm px-1 py-1 gap-x-1;
+  }
+
+  .students-wrapper {
+    @apply flex flex-col gap-y-2 gap-x-5 mt-2;
+  }
+
+  .student-wrapper {
+    @apply flex flex-row gap-x-2 items-center justify-end;
+
+    .name {
+      @apply font-semibold;
+    }
+
+    .button {
+      @apply text-purple-500 hover:text-purple-600 hover:font-bold text-sm cursor-pointer;
+    }
+  }
+  .withdraw {
+    @apply text-red-500 hover:text-red-600 hover:font-bold text-sm cursor-pointer text-end;
+  }
 }
 
 .tag {
-  @apply bg-accent-light text-text-dark text-[12px] px-2 py-0.5 rounded-full;
-  border: none; /* убираем рамку */
-}
-
-.header {
-  @apply text-text-dark text-xl font-bold;
-}
-
-.submit-button {
-  @apply bg-accent hover:bg-secondary text-text-light hover:text-text-dark text-sm cursor-pointer py-1 px-2 rounded-lg;
-}
-
-.cancel-button {
-  @apply bg-gray-400 hover:bg-gray-500 text-text-light hover:text-text-dark text-sm cursor-pointer py-1 px-2 rounded-lg;
-}
-
-.label {
-  @apply text-text-dark text-sm font-semibold;
+  @apply bg-purple-200 border border-purple-600 text-black text-[12px] px-2 py-1 rounded-xl text-center;
 }
 
 .icon-trash {
@@ -172,11 +142,11 @@ nav {
   @apply fixed left-2 bottom-2 flex flex-row z-50 place-items-end gap-2;
 
   .main-button {
-    @apply bg-accent rounded-full w-12 h-12 flex items-center justify-center cursor-pointer;
+    @apply bg-purple-500 rounded-full w-12 h-12 flex items-center justify-center cursor-pointer;
   }
 
   .menu {
-    @apply bg-secondary flex-col rounded-sm items-center justify-center px-2 py-1 text-text-dark text-sm shadow-md hidden;
+    @apply bg-purple-200 flex-col rounded-sm items-center justify-center px-2 py-1 text-purple-800 text-sm shadow-md hidden;
   }
 
   &:hover .menu {
@@ -189,11 +159,11 @@ nav {
 }
 
 .new-edit-wrapper {
-  @apply flex flex-col sm:flex-row gap-y-2 gap-x-5 mt-2 justify-end;
+  @apply flex flex-col sm:flex-row gap-y-2 gap-x-5 mt-2;
 }
 
 .text-field {
-  @apply flex border-0 focus:ring-0 border-b-2 focus:border-b-4 border-accent w-full p-2 text-sm focus:outline-none text-text-dark placeholder:text-accent h-full resize-none align-top whitespace-pre-wrap break-words;
+  @apply flex border-0 focus:ring-0 border-b-2 focus:border-b-4 border-purple-800 w-full p-2 text-sm focus:outline-none placeholder:text-gray-400 bg-gray-50 h-full resize-none align-top whitespace-pre-wrap break-words;
 }
 
 .extra {
@@ -213,7 +183,7 @@ nav {
 }
 
 .deposit-card {
-  @apply bg-accent text-xl px-2 text-white;
+  @apply bg-purple-600 text-xl px-2 text-white;
 }
 
 .withdrawals-wrapper {
@@ -221,17 +191,9 @@ nav {
 }
 
 .withdrawal-card {
-  @apply bg-accent text-xl px-2 text-white;
+  @apply bg-purple-400 text-xl px-2 text-white;
 }
 
 .student-show-classrom-card {
-  @apply flex flex-col bg-primary rounded-lg shadow-sm px-5 py-2 gap-y-2;
-}
-
-.notification-card {
-  @apply bg-info px-2 py-1 text-text-light text-sm shadow-md rounded-lg max-w-xs  text-center;
-}
-
-.error-card {
-  @apply bg-alert px-2 py-1 text-text-light text-sm shadow-md rounded-lg max-w-xs  text-center;
+  @apply bg-purple-50 rounded-lg shadow-sm px-5 py-2;
 }
