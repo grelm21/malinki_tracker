@@ -1,4 +1,6 @@
 class Classroom < ApplicationRecord
+  resourcify
+
   belongs_to :teacher, dependent: :destroy
   has_many :classrooms_students
   has_many :students, through: :classrooms_students

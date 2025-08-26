@@ -17,18 +17,27 @@ class Student < ApplicationRecord
 
   after_create :create_classroom, if: -> { classroom_id.eql?('') }
   after_create_commit :create_user
+  # after_create_commit :add_roles
 
   private
 
   def create_classroom
     classroom = Classroom.create!(name:, wage_cents:, length:, schedule:,
                                   teacher_id: teachers.first.id)
+    self.classroom_id = classroom.id
     ClassroomsStudent.create!(student: self, classroom:, payment_type:)
   end
 
   def create_user
     password = rand(1000..9999).to_s
-    User.create!(login: "student#{id}", password:, role: 'student')
+    user = User.create!(login: "student#{id}", password:, role: 'student')
     update!(saved_password: password)
+
+    add_roles(user)
+  end
+
+  def add_roles(student_user)
+    student_user.add_role(:student, Classroom.find(classroom_id))
+    teachers.first.user.add_role(:teacher, Classroom.find(classroom_id))
   end
 end

@@ -75,3 +75,4 @@ gem "tailwindcss-rails", "~> 4.3"
 gem 'money-rails', '~> 1.12'
 gem 'i18n'
 gem 'rails-i18n', '~> 7.0.0'
+gem 'rolify', '~> 6.0'
