@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  rolify
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -14,6 +15,8 @@ class User < ApplicationRecord
   has_one :student
   has_one :teacher
 
+  after_create :add_global_role, if: -> { role.eql?('teacher') }
+    
   def email_changed?
     false
   end
@@ -32,5 +35,9 @@ class User < ApplicationRecord
 
   def create_teacher
     create_teacher!(name: login)
+  end
+  
+  def add_global_role
+    add_role role
   end
 end
