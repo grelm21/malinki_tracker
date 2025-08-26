@@ -1,16 +1,14 @@
-
 <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "flex flex-col gap-4 justify-center items-center" }) do |f| %>
-  <div class="header">M-Tracker</div>
+  <div class="header">m-tracker - вход</div>
+  <%= render "devise/shared/error_messages", resource: resource %>
   <div class="">
     <%= f.text_field :login, autocomplete: "new-login", value: "", autofocus: true, class: "text-field", placeholder: 'логин' %>
   </div>
-
-  <div class="field">
+  <div class="">
     <%= f.password_field :password, class: "text-field", placeholder: '******' %>
   </div>
-
-  <div class="actions">
+  <div class="">
     <%= f.submit "войти", class: "submit-button" %>
   </div>
+  <%= render "devise/shared/links" %>
 <% end %>
-

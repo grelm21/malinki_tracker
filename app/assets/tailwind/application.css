@@ -227,3 +227,11 @@ nav {
 .student-show-classrom-card {
   @apply flex flex-col bg-primary rounded-lg shadow-sm px-5 py-2 gap-y-2;
 }
+
+.notification-card {
+  @apply bg-info px-2 py-1 text-text-light text-sm shadow-md rounded-lg max-w-xs  text-center;
+}
+
+.error-card {
+  @apply bg-alert px-2 py-1 text-text-light text-sm shadow-md rounded-lg max-w-xs  text-center;
+}
