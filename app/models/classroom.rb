@@ -1,5 +1,6 @@
 class Classroom < ApplicationRecord
   resourcify
+  include ClassroomValidatorsConcern
 
   belongs_to :teacher, dependent: :destroy
   has_many :classrooms_students

@@ -18,7 +18,7 @@ class StudentsController < ApplicationController
   def create
     @student = Student.new(student_params)
     @student.teachers << @teacher
-    if @student.save!
+    if @student.save
       redirect_to dashboard_path
     else
       render :new
@@ -28,7 +28,7 @@ class StudentsController < ApplicationController
   private
 
   def student_params
-    params.require(:student).permit(:name, :contact_details, :classroom_id, :wage, :length, :schedule, :payment_type)
+    params.require(:student).permit(:name, :contact_details, :classroom_id, :wage, :length, :payment_type, schedule: [])
   end
 
   def set_teacher

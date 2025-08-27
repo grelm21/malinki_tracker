@@ -1,18 +1,22 @@
 <% if action_name.eql? 'new' %>
-  <div class='header'>Добавить нового ученика</div>
+  <div class='header'>добавить нового ученика</div>
 <% end %>
+<%= render 'elements/resource_error', resource: @student %>
 <%= form_with model: [current_user.teacher, @student], class: '' do |form| %>
   <div class='new-edit-wrapper'>
-    <div class="flex flex-1 flex-col gap-4">
-      <%= form.text_field :name, class: 'text-field', placeholder: 'имя ученика' %>
-      <div class='label'>Группа</div>
-      <div class='flex flex-row items-center gap-2'>
-        <%= form.select :classroom_id, options_from_collection_for_select(Classroom.all.where(class_format: :multi), :id, :name), { prompt: 'индивидуально'}, { class: 'text-field', disabled: true  } %>
-        <%= form.hidden_field :classroom_id, value: '' %>
-        <div class='icon-add-big'></div>
+    <div>
+      <div class="flex flex-1 flex-col gap-4">
+        <div class='label'>имя ученика</div>
+        <%= form.text_field :name, class: 'text-field', placeholder: 'имя ученика' %>
+        <div class='label'>группа</div>
+        <div class='flex flex-row items-center gap-2'>
+          <%= form.select :classroom_id, options_from_collection_for_select(Classroom.all.where(class_format: :multi), :id, :name), { prompt: 'индивидуально'}, { class: 'text-field', disabled: true  } %>
+          <%= form.hidden_field :classroom_id, value: '' %>
+          <div class='icon-add-big'></div>
+        </div>
+        <div class='extra'>если планируются индивидуальные занятия с учеником, выбирайте "индивидуально" и продолжайте заполнение формы</div>
+        <div class='extra'>если планируются занятия в группе, то выберите группу из списка или создайте новую, нажав "+", после создания группы, вы вернетесь к доавлению ученика</div>
       </div>
-      <div class='extra'>если планируются индивидуальные занятия с учеником, выбирайте "индивидуально" и продолжайте заполнение формы</div>
-      <div class='extra'>если планируются занятия в группе, то выберите группу из списка или создайте новую, нажав "+", после создания группы, вы вернетесь к доавлению ученика</div>
     </div>
     <div class="grid grid-cols-2 gap-4">
       <%= form.label :wage, 'стоимость урока (руб.)', class: 'label' %>
@@ -20,7 +24,7 @@
       <%= form.label :length, 'длительность урока (мин.)', class: 'label' %>
       <%= form.number_field :length, min: 0, step: 5, class: 'text-field', placeholder: 'длительность урока' %>
       <div class='flex flex-col col-span-2 gap-y-4'>
-        <div class='label'>Тип оплаты:</div>
+        <div class='label'>тип оплаты:</div>
         <div class="flex items-center">
           <%= form.radio_button :payment_type, 'regular', checked: true, class: 'radio-checkbox' %>
           <label for="student_payment_type_single" class="radio-label">разово</label>
@@ -29,12 +33,20 @@
           <%= form.radio_button :payment_type, 'pass', checked: false, class: 'radio-checkbox' %>
           <label for="student_payment_type_pass" class="radio-label">абонемент</label>
         </div>
+        <div class="label">Расписание</div>
+        <div class="grid grid-cols-2 justify-end">
+          <%= form.collection_check_boxes :schedule, schedule_num_days, :to_i, :to_i, { include_hidden: false }, { class: ''} do |chb| %>
+            <div class='flex flex-row gap-2 justify-start items-center'>
+              <%= chb.check_box class: 'checkbox', checked: false %>
+              <div><%= t('date.day_names')[chb.object.to_i] %></div>
+            </div>
+          <% end %>
+        </div>
       </div>
     </div>
   </div>
-</div>
-<div class='flex flex-row gap-2 justify-end items-center'>
-  <%= link_to 'отмена', root_path, class: 'cancel-button' %>
-  <%= form.submit 'сохранить', class: 'submit-button' %>
-</div>
+  <div class='flex flex-row gap-2 justify-start items-center'>
+    <%= link_to 'отмена', root_path, class: 'cancel-button' %>
+    <%= form.submit 'сохранить', class: 'submit-button' %>
+  </div>
 <% end %>
