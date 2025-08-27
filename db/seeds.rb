@@ -1,4 +1,5 @@
 user = User.create(login: 'Grigorii', email: 'ex@ya.ru', password: '123456', approved: true)
+user.add_role(:admin)
 teacher = user.teacher
 
 # classroom = teacher.classrooms.create!(name: 'Егор', wage_cents: 120000, length: 60, schedule: %w[1 3])
@@ -22,3 +23,9 @@ student.save!
 # ClassroomsStudent.create(classroom: classroom, student: egor, payment_type: :regular)
 #
 # classroom.update!(students: [student_one, student_two, egor])
+
+User.create(login: 'valeria', password: '123456')
+User.create(login: 'tatiyana', password: '123456')
+User.create(login: 'valentina', password: '123456')
+User.create(login: 'anna', password: '123456')
+
