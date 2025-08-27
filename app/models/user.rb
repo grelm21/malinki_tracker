@@ -16,7 +16,11 @@ class User < ApplicationRecord
   has_one :teacher
 
   after_create :add_global_role, if: -> { role.eql?('teacher') }
-    
+  after_create_commit :create_teacher, if: -> { role.eql?('teacher') }
+
+  scope :with_teachers, -> { where.associated(:teacher) }
+  scope :with_new_teachers_count, -> { with_teachers.where(approved: false).count }
+
   def email_changed?
     false
   end
@@ -29,14 +33,20 @@ class User < ApplicationRecord
     approved? ? super : :not_approved
   end
 
-  after_create_commit :create_teacher, if: -> { role.eql?('teacher') }
+  def admin?
+    has_role?(:admin)
+  end
+
+  def self.new_teachers?
+    User.with_new_teachers_count > 1
+  end
 
   private
 
   def create_teacher
     create_teacher!(name: login)
   end
-  
+
   def add_global_role
     add_role role
   end

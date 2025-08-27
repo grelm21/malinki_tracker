@@ -11,6 +11,8 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :users, only: %i[index update destroy]
+
   resources :deposits, only: %i[new create]
   resources :classrooms
 

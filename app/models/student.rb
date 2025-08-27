@@ -30,7 +30,7 @@ class Student < ApplicationRecord
 
   def create_user
     password = rand(1000..9999).to_s
-    user = User.create!(login: "student#{id}", password:, role: 'student')
+    user = User.create!(login: "student#{id}", password:, role: 'student', approved: true)
     update!(saved_password: password)
 
     add_roles(user)
