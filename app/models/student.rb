@@ -1,4 +1,6 @@
 class Student < ApplicationRecord
+  # include ClassroomValidatorsConcern
+
   belongs_to :user, optional: true
   has_many :classrooms_students
   has_many :classrooms, through: :classrooms_students
@@ -17,15 +19,20 @@ class Student < ApplicationRecord
 
   after_create :create_classroom, if: -> { classroom_id.eql?('') }
   after_create_commit :create_user
-  # after_create_commit :add_roles
 
   private
 
   def create_classroom
-    classroom = Classroom.create!(name:, wage_cents:, length:, schedule:,
+    classroom = Classroom.create(name:, wage_cents:, length:, schedule:,
                                   teacher_id: teachers.first.id)
+
+    if classroom.errors.any?
+      classroom.errors.each { |e| errors.add(e.attribute, e.message) }
+      raise ActiveRecord::Rollback
+    end
+
     self.classroom_id = classroom.id
-    ClassroomsStudent.create!(student: self, classroom:, payment_type:)
+    ClassroomsStudent.create(student: self, classroom:, payment_type:)
   end
 
   def create_user
