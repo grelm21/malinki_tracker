@@ -37,7 +37,7 @@ nav {
 }
 
 .main {
-  @apply relative container p-5 my-5 w-full xl:max-w-[1280px] grid grid-flow-row bg-white rounded-lg sm:mx-auto;
+  @apply relative container p-5 my-5 w-full xl:max-w-[1280px] grid grid-flow-row bg-white rounded-lg sm:mx-auto gap-4;
 }
 
 .classrooms_wrapper {

@@ -20,7 +20,7 @@ class WithdrawalsController < ApplicationController
   def create_collection
     @withdrawals = @teacher.withdrawals.create(withdrawal_collection_params)
 
-    redirect_to root_path
+    redirect_to root_path(date: withdrawal_collection_params.first[:issued_at])
   end
 
   private

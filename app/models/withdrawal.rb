@@ -16,6 +16,8 @@ class Withdrawal < ApplicationRecord
     end
   }
 
+  scope :by_date, -> { order(issued_at: :desc) }
+
   private def create_deposit
     Deposit.create!(amount_cents: amount_cents, classrooms_student:, issued_at: issued_at)
   end
