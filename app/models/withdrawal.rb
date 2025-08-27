@@ -17,6 +17,15 @@ class Withdrawal < ApplicationRecord
   }
 
   scope :by_date, -> { order(issued_at: :desc) }
+  scope :sum_for_day, lambda { |date|
+    sum = where(issued_at: date.beginning_of_day..date.end_of_day).sum(:amount_cents)
+    Money.new(sum, 'RUB')
+  }
+
+  scope :sum_for_month, lambda { |date|
+    sum = where(issued_at: date.beginning_of_month..date.end_of_month).sum(:amount_cents)
+    Money.new(sum, 'RUB')
+  }
 
   private def create_deposit
     Deposit.create!(amount_cents: amount_cents, classrooms_student:, issued_at: issued_at)

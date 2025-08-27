@@ -1,4 +1,4 @@
-<div class='flex flex-row gap-x-2 justify-self-center header items-center'>
+<div class='flex flex-1 flex-row gap-x-2 justify-center header items-top'>
   <%= link_to ' < ', dashboard_path(date: date, move: :yesterday), class: 'cursor-pointer' %>
   <div><%= date_dict(date) %></div>
   <%= link_to ' > ', dashboard_path(date: date, move: :tomorrow), class: 'cursor-pointer' %>
