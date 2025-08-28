@@ -13,7 +13,8 @@ class WithdrawalsController < ApplicationController
     if @withdrawal.save
       redirect_to @withdrawal.classrooms_student.student, notice: 'Списание создано'
     else
-      render :new
+      flash[:error] = @withdrawal.errors.full_messages.to_sentence
+      redirect_to @withdrawal.classrooms_student.student
     end
   end
 

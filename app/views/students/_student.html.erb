@@ -36,12 +36,12 @@
             <%= classrooms_students_from_classroom(classroom, student).payment_type %>
           </div>
         </div>
-        <div class='header'>остаток: <%= humanized_money_with_symbol @left_deposits[classrooms_students_from_classroom(classroom, student).id] %></div>
-        <div class='flex justify-center font-bold color-text-dark'>последние абонементы</div>
-        <div class="deposits-wrapper">
-          <%= render classroom.classrooms_students.where(student:).first.deposits.by_date.limit(8) %>
-        </div>
-        <%= render 'deposits/form', classrooms_student: classrooms_students_from_classroom(classroom, student), deposit: Deposit.new %>
+          <div class='header'>остаток: <%= humanized_money_with_symbol @left_deposits[classrooms_students_from_classroom(classroom, student).id] %></div>
+          <div class='flex justify-center font-bold color-text-dark'>последние абонементы</div>
+          <div class="deposits-wrapper">
+            <%= render classroom.classrooms_students.where(student:).first.deposits.by_date.limit(8) %>
+          </div>
+          <%= render 'deposits/form', classrooms_student: classrooms_students_from_classroom(classroom, student), deposit: Deposit.new, action_name: :new %>
         <div class='flex justify-center font-bold color-text-dark'>последние занятия</div>
         <div class="withdrawals-wrapper">
           <%= render classroom.classrooms_students.where(student:).first.withdrawals.by_date.limit(16) %>

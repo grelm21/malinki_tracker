@@ -19,7 +19,8 @@ class Deposit < ApplicationRecord
 
   scope :by_date, -> { order(issued_at: :desc) }
 
-  before_destroy :delete_withdrawals
+  before_destroy :delete_withdrawals, if: -> { classrooms_student.pass? }
+
 
   def self.get_deposit_amount_for_classroom_student(student, classroom)
     deposits_for_classroom_student(student, classroom).sum(&:amount)
