@@ -1,0 +1,8 @@
+<% if flash[:error].present? %>
+  <div class="absolute warning-card top-[70px] right-2 flex-col">
+    <div class="icon-close justify-self-end cursor-pointer" onclick="this.parentElement.remove()"></div>
+    <ul>
+      <li><%= flash[:error] %></li>
+    </ul>
+  </div>
+<% end %>

@@ -1,3 +1,6 @@
-<div class='deposit-card'>
-  <div><%= l(deposit.issued_at.to_date, format: :default) %>: <%= humanized_money_with_symbol deposit.amount %></div>
+<div class='deposit-card items-center'>
+  <div class='flex flex-1'><%= l(deposit.issued_at.to_date, format: :default) %> (<%= l(deposit.issued_at, format: '%a') %>): <%= humanized_money_with_symbol deposit.amount %></div>
+    <%= button_to deposit, method: :delete, class: 'flex items-center' do %>
+    <div class="icon-trash"></div>
+  <% end %>
 </div>

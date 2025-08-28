@@ -7,7 +7,7 @@
       <div class="name"><%= student.name %>, </div>
       <% if classrooms_students_from_classroom(classroom, student).pass? %>
         <div class="<%= classroom_student_decorator(@left_deposits, classroom, student, classroom.wage) %>">остаток депозита: <%= humanized_money_with_symbol show_left_deposit(@left_deposits, classroom, student) %></div>
-        <%= chb.check_box class: 'checkbox', checked: sufficient_deposit?(@left_deposits, classroom, student, classroom.wage) && !withdrawal_for_current_day?(classroom, student, date), disabled: !sufficient_deposit?(@left_deposits, classroom, student, classroom.wage) || withdrawal_for_current_day?(classroom, student) %>
+        <%= chb.check_box class: 'checkbox', checked: sufficient_deposit?(@left_deposits, classroom, student, classroom.wage) && !withdrawal_for_current_day?(classroom, student, date), disabled: !sufficient_deposit?(@left_deposits, classroom, student, classroom.wage) || withdrawal_for_current_day?(classroom, student, date) %>
       <% end %>
       <% if classrooms_students_from_classroom(classroom, student).regular? %>
         <div class="">разовая оплата: <%= humanized_money_with_symbol classroom.wage %></div>
@@ -36,17 +36,15 @@
             <%= classrooms_students_from_classroom(classroom, student).payment_type %>
           </div>
         </div>
-        <% if classrooms_students_from_classroom(classroom, student).pass? %>
-          <div>остаток: <%= humanized_money_with_symbol @left_deposits[classrooms_students_from_classroom(classroom, student)] %></div>
-          <div class='flex justify-center font-bold color-text-dark'>последние абонементы</div>
-          <div class="deposits-wrapper">
-            <%= render classroom.classrooms_students.where(student:).first.deposits.limit(4) %>
-          </div>
-          <%= render 'deposits/form', classrooms_student: classrooms_students_from_classroom(classroom, student), deposit: Deposit.new %>
-        <% end %>
+        <div class='header'>остаток: <%= humanized_money_with_symbol @left_deposits[classrooms_students_from_classroom(classroom, student).id] %></div>
+        <div class='flex justify-center font-bold color-text-dark'>последние абонементы</div>
+        <div class="deposits-wrapper">
+          <%= render classroom.classrooms_students.where(student:).first.deposits.by_date.limit(8) %>
+        </div>
+        <%= render 'deposits/form', classrooms_student: classrooms_students_from_classroom(classroom, student), deposit: Deposit.new %>
         <div class='flex justify-center font-bold color-text-dark'>последние занятия</div>
         <div class="withdrawals-wrapper">
-          <%= render classroom.classrooms_students.where(student:).first.withdrawals.by_date %>
+          <%= render classroom.classrooms_students.where(student:).first.withdrawals.by_date.limit(16) %>
         </div>
         <%= render 'withdrawals/form', classrooms_student: classrooms_students_from_classroom(classroom, student), withdrawal: Withdrawal.new, teacher: classroom.teacher %>
       </div>

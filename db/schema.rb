@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_08_26_123052) do
+ActiveRecord::Schema[7.1].define(version: 2025_08_27_175256) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -45,6 +45,15 @@ ActiveRecord::Schema[7.1].define(version: 2025_08_26_123052) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["classrooms_student_id"], name: "index_deposits_on_classrooms_student_id"
+  end
+
+  create_table "deposits_withdrawals", id: false, force: :cascade do |t|
+    t.bigint "deposit_id", null: false
+    t.bigint "withdrawal_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["deposit_id"], name: "index_deposits_withdrawals_on_deposit_id"
+    t.index ["withdrawal_id"], name: "index_deposits_withdrawals_on_withdrawal_id"
   end
 
   create_table "roles", force: :cascade do |t|
@@ -117,6 +126,8 @@ ActiveRecord::Schema[7.1].define(version: 2025_08_26_123052) do
 
   add_foreign_key "classrooms", "teachers"
   add_foreign_key "deposits", "classrooms_students"
+  add_foreign_key "deposits_withdrawals", "deposits"
+  add_foreign_key "deposits_withdrawals", "withdrawals"
   add_foreign_key "students", "users"
   add_foreign_key "students_teachers", "students"
   add_foreign_key "students_teachers", "teachers"

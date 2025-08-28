@@ -1,3 +1,6 @@
-<div class='withdrawal-card'>
-  <div><%= l(withdrawal.issued_at.to_date, format: :default) %>: <%= humanized_money_with_symbol withdrawal.amount %></div>
+<div class='withdrawal-card items-center'>
+  <div class='flex flex-1'><%= l(withdrawal.issued_at.to_date, format: :default) %> (<%= l(withdrawal.issued_at, format: '%a') %>): <%= humanized_money_with_symbol withdrawal.amount %></div>
+  <%= button_to withdrawal, method: :delete, class: 'flex items-center' do %>
+    <div class="icon-trash"></div>
+  <% end %>
 </div>

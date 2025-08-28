@@ -5,8 +5,8 @@
     </div>
   <% end %>
   <div class='new-edit-wrapper items-end justify-end'>
-      <%= form.text_field :amount, value: humanized_money(classroom.wage), class: 'text-field', placeholder: 'сумма' %>
-      <%= form.date_field :issued_at, value: date, class: 'text-field', disabled: true %>
+    <%= form.text_field :amount, value: humanized_money(classroom.wage), class: 'text-field', placeholder: 'сумма' %>
+    <%= form.date_field :issued_at, value: date, class: 'text-field', disabled: true %>
     <%= form.hidden_field :issued_at, value: date %>
     <div class='items-center justify-end'>
       <%= form.submit 'проведено и оплачено', class: "submit-button" %>
