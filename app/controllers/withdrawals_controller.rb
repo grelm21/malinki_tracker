@@ -13,7 +13,8 @@ class WithdrawalsController < ApplicationController
     if @withdrawal.save
       redirect_to @withdrawal.classrooms_student.student, notice: 'Списание создано'
     else
-      render :new
+      flash[:error] = @withdrawal.errors.full_messages.to_sentence
+      redirect_to @withdrawal.classrooms_student.student
     end
   end
 
@@ -23,10 +24,16 @@ class WithdrawalsController < ApplicationController
     redirect_to root_path(date: withdrawal_collection_params.first[:issued_at])
   end
 
+  def destroy
+    @withdrawal = Withdrawal.find(params[:id])
+    @withdrawal.destroy!
+    redirect_to student_path(@withdrawal.classrooms_student.student)
+  end
+
   private
 
   def withdrawal_params
-    params.require(:withdrawal).permit(:amount, :issued_at, :classrooms_student_id)
+    params.require(:withdrawal).permit(:amount, :issued_at, :classrooms_student_id, :deposit_id)
   end
 
   def withdrawal_collection_params

@@ -231,7 +231,7 @@ nav {
 }
 
 .deposit-card {
-  @apply bg-accent text-xl px-2 text-white;
+  @apply flex flex-row bg-accent px-2 text-white gap-x-2;
 }
 
 .withdrawals-wrapper {
@@ -239,7 +239,7 @@ nav {
 }
 
 .withdrawal-card {
-  @apply bg-accent text-xl px-2 text-white;
+  @apply flex flex-row bg-accent px-2 text-white gap-x-2;
 }
 
 .student-show-classrom-card {

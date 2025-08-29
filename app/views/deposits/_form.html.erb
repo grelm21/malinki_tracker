@@ -7,6 +7,11 @@
       <%= form.date_field :issued_at, value: Date.today, class: 'text-field'%>
     </div>
     <%= form.hidden_field :classrooms_student_id, value: classrooms_student.id %>
-    <%= form.submit 'добавить абонемент', class: "submit-button" %>
+    <% if action_name.eql? :new %>
+      <%= form.submit 'добавить абонемент', class: "submit-button" %>
+    <% end %>
+    <% if action_name.eql? :edit %>
+      <%= form.submit 'обновить абонемент', class: "submit-button" %>
+    <% end %>
   </div>
 <% end %>

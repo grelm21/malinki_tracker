@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   resources :teachers, shallow: true do
     resources :students
-    resources :withdrawals, only: %i[new create] do
+    resources :withdrawals, only: %i[new create destroy] do
       collection do
         post :create_collection
       end
@@ -13,7 +13,7 @@ Rails.application.routes.draw do
 
   resources :users, only: %i[index update destroy]
 
-  resources :deposits, only: %i[new create]
+  resources :deposits, only: %i[new create destroy update]
   resources :classrooms
 
   get 'dashboard', to: 'pages#dashboard'

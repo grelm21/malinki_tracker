@@ -13,6 +13,9 @@ class StudentsController < ApplicationController
     @classrooms = @student.classrooms.where(teacher: current_user.teacher)
 
     @left_deposits = LeftDepositService.new(@classrooms).call
+
+    p '---___---___---___---___---___---___---___---___---___---___---___---'
+  p @left_deposits.inspect
   end
 
   def create

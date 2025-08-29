@@ -9,6 +9,9 @@ class PagesController < ApplicationController
     # TODO: перенести в отдельный сервис после дебага
     @classrooms = @teacher.classrooms.includes(:students).with_lesson_on_date(@date)
     @left_deposits = LeftDepositService.new(@classrooms).call
+
+    @sum_for_day = @teacher.withdrawals.sum_for_day(@date)
+    @sum_for_month = @teacher.withdrawals.sum_for_month(@date)
   end
 
   private

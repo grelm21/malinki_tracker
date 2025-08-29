@@ -13,7 +13,7 @@ student.teachers << user.teacher
 student.save!
 
 student = teacher.students.new(name: 'Егор', contact_details: 'Егор', classroom_id: '', wage_cents: 120_000, length: 60,
-                            schedule: %w[1 3])
+                            schedule: %w[1 3], payment_type: :pass)
 student.teachers << user.teacher
 student.save!
 
@@ -28,7 +28,7 @@ student.teachers << user.teacher
 student.save!
 
 student = teacher.students.new(name: 'Сергей', contact_details: '', classroom_id: '',
-                               wage_cents: 200_000, length: 60, schedule: %w[2 4])
+                               wage_cents: 200_000, length: 60, schedule: %w[2 4], payment_type: :pass)
 student.teachers << user.teacher
 student.save!
 
