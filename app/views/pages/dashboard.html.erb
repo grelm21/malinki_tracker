@@ -1,7 +1,11 @@
-<div class="grid grid-flow-row lg:flex gap-y-4">
-  <%= render 'elements/date_pick', date: @date %>
+<div class="flex flex-col gap-y-4">
   <%= render 'elements/statistics', action_name: :dashboard %>
+  <%= render 'elements/date_pick', date: @date %>
 </div>
 <div class='classrooms_wrapper'>
-  <%= render @classrooms %>
+  <% if @classrooms.any? %>
+    <%= render @classrooms %>
+  <% else %>
+    <%= render 'elements/notice', message: 'На сегодня нет уроков. Отдыхайте =)' %>
+  <% end %>
 </div>

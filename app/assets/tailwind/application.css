@@ -2,7 +2,7 @@
 @import "flowbite";
 
 @theme {
-  --color-background: #fdfcfb; /* теплый светлый фон, почти белый */
+  --color-background: #faf4ed; /* теплый светлый фон, почти белый */
   --color-primary: #e5e7eb; /* светлый серо-бежевый (warm gray-200) */
   --color-secondary: #cbd5e1; /* мягкий серо-голубой (slate-300) */
   --color-accent: #334155; /* глубокий navy/slate-700 */
@@ -94,6 +94,10 @@ nav {
 
 .header {
   @apply text-text-dark text-xl font-bold;
+}
+
+.header-light {
+  @apply text-text-light text-xl font-bold;
 }
 
 .submit-button {
@@ -256,4 +260,8 @@ nav {
 
 .warning-card {
   @apply bg-warning px-2 py-1 text-text-light text-sm shadow-md rounded-lg max-w-xs  text-center;
+}
+
+.notice-card {
+  @apply bg-info px-2 py-1 text-text-light text-sm shadow-md rounded-lg max-w-xs  text-center;
 }
