@@ -1,5 +1,5 @@
-<div class='student-wrapper'>
   <% if action_name.eql? :classroom %>
+  <div class='student-wrapper'>
     <%= link_to student, class: "flex items-center gap-x-2" do %>
       <% if withdrawal_for_current_day?(classroom, student, date) %>
         <div class="icon-cash"></div>
@@ -14,14 +14,17 @@
         <%= chb.check_box class: 'checkbox', checked: !withdrawal_for_current_day?(classroom, student, date), disabled: withdrawal_for_current_day?(classroom, student, date) %>
       <% end %>
     <% end %>
-  <% end %>
-</div>
+  </div>
+<% end %>
 <% if action_name.eql? 'show' %>
   <div class="header justify-self-center"><%= student.name %></div>
   <div class="grid grid-flow-row gap-y-4">
     <% @classrooms.each do |classroom| %>
       <div class="student-show-classrom-card">
-        <div class="font-bold"><%= classroom.name %></div>
+        <div class="flex flex-row items-center gap-x-2">
+          <div class="font-bold">Класс: <%= classroom.name %> </div>
+          <button data-modal-target="classroom-edit-<%= classroom.id %>" data-modal-toggle="classroom-edit-<%= classroom.id %>" type="button" class="icon-edit-black cursor-pointer"></button>
+        </div>
         <div class='tags_wrapper justify-start'>
           <div class='tag'>
             <%= classroom.length%> мин.
@@ -36,18 +39,21 @@
             <%= classrooms_students_from_classroom(classroom, student).payment_type %>
           </div>
         </div>
+        <% if classrooms_students_from_classroom(classroom, student).pass? %>
           <div class='header'>остаток: <%= humanized_money_with_symbol @left_deposits[classrooms_students_from_classroom(classroom, student).id] %></div>
           <div class='flex justify-center font-bold color-text-dark'>последние абонементы</div>
           <div class="deposits-wrapper">
             <%= render classroom.classrooms_students.where(student:).first.deposits.by_date.limit(8) %>
           </div>
           <%= render 'deposits/form', classrooms_student: classrooms_students_from_classroom(classroom, student), deposit: Deposit.new, action_name: :new %>
+        <% end %>
         <div class='flex justify-center font-bold color-text-dark'>последние занятия</div>
         <div class="withdrawals-wrapper">
           <%= render classroom.classrooms_students.where(student:).first.withdrawals.by_date.limit(16) %>
         </div>
         <%= render 'withdrawals/form', classrooms_student: classrooms_students_from_classroom(classroom, student), withdrawal: Withdrawal.new, teacher: classroom.teacher %>
       </div>
+      <%= render "classrooms/edit_modal", classroom:, student: %>
     <% end %>
   </div>
 <% end %>

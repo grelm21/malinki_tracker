@@ -19,9 +19,12 @@ class WithdrawalsController < ApplicationController
   end
 
   def create_collection
-    @withdrawals = @teacher.withdrawals.create(withdrawal_collection_params)
-
-    redirect_to root_path(date: withdrawal_collection_params.first[:issued_at])
+    if withdrawal_collection_params.present?
+      @withdrawals = @teacher.withdrawals.create(withdrawal_collection_params)
+    else
+      flash[:error] = 'Вы не выбрали ни одного ученика для списания'
+    end
+    redirect_to root_path(date: withdrawal_params[:issued_at])
   end
 
   def destroy
@@ -37,6 +40,8 @@ class WithdrawalsController < ApplicationController
   end
 
   def withdrawal_collection_params
+    return nil if params[:withdrawal][:classrooms_student_ids].blank?
+
     params[:withdrawal][:classrooms_student_ids].map do |cs_id|
       withdrawal_params.merge!(classrooms_student_id: cs_id)
     end
