@@ -2,7 +2,7 @@
 @import "flowbite";
 
 @theme {
-  --color-background: #fdfcfb; /* теплый светлый фон, почти белый */
+  --color-background: #faf4ed; /* теплый светлый фон, почти белый */
   --color-primary: #e5e7eb; /* светлый серо-бежевый (warm gray-200) */
   --color-secondary: #cbd5e1; /* мягкий серо-голубой (slate-300) */
   --color-accent: #334155; /* глубокий navy/slate-700 */
@@ -96,6 +96,10 @@ nav {
   @apply text-text-dark text-xl font-bold;
 }
 
+.header-light {
+  @apply text-text-light text-xl font-bold;
+}
+
 .submit-button {
   @apply bg-accent hover:bg-secondary text-text-light hover:text-text-dark text-sm cursor-pointer py-1 px-2 rounded-lg;
 }
@@ -186,6 +190,14 @@ nav {
   height: 16px;
 }
 
+.icon-edit-black {
+  width: 16px;
+  height: 16px;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='black' class='bi bi-pencil-square' viewBox='0 0 16 16'><path d='M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z'/><path fill-rule='evenodd' d='M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z'/></svg>");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
 .floating-button-wrapper {
   @apply fixed left-2 bottom-2 flex flex-row z-50 place-items-end gap-2;
 
@@ -256,4 +268,8 @@ nav {
 
 .warning-card {
   @apply bg-warning px-2 py-1 text-text-light text-sm shadow-md rounded-lg max-w-xs  text-center;
+}
+
+.notice-card {
+  @apply bg-info px-2 py-1 text-text-light text-sm shadow-md rounded-lg max-w-xs  text-center;
 }

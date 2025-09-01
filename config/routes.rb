@@ -14,7 +14,12 @@ Rails.application.routes.draw do
   resources :users, only: %i[index update destroy]
 
   resources :deposits, only: %i[new create destroy update]
-  resources :classrooms
+
+  resources :students, only: [] do
+    resources :classrooms, only: %i[update]
+  end
+
+  resources :classrooms, only: %i[show update]
 
   get 'dashboard', to: 'pages#dashboard'
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
