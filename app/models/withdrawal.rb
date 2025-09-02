@@ -29,7 +29,7 @@ class Withdrawal < ApplicationRecord
   }
 
   scope :sum_for_month, lambda { |date|
-    sum = where(issued_at: date.beginning_of_month..date.end_of_month).sum(:amount_cents)
+    sum = where(issued_at: date.beginning_of_month.beginning_of_day..date.end_of_month.end_of_day).sum(:amount_cents)
     Money.new(sum, 'RUB')
   }
 

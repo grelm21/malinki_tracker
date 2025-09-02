@@ -1,4 +1,4 @@
-<%= form_with model: [deposit] do |form| %>
+<%= form_with model: [deposit], html: { autocomplete: 'off' } do |form| %>
   <div class='new-edit-wrapper'>
     <div>
       <%= form.text_field :amount, class: 'text-field', placeholder: 'сумма' %>

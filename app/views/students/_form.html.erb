@@ -2,7 +2,7 @@
   <div class='header'>добавить нового ученика</div>
 <% end %>
 <%= render 'elements/resource_error', resource: @student %>
-<%= form_with model: [current_user.teacher, @student], class: '' do |form| %>
+<%= form_with model: [current_user.teacher, @student], html: { autocomplete: 'off' } do |form| %>
   <div class='new-edit-wrapper'>
     <div>
       <div class="flex flex-1 flex-col gap-4">
