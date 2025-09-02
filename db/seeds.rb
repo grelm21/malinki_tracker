@@ -2,35 +2,35 @@ user = User.create(login: 'grelm', email: 'ex@ya.ru', password: '123456', approv
 user.add_role(:admin)
 teacher = user.teacher
 
-student = teacher.students.new(name: 'Иван', contact_details: '', classroom_id: '', wage_cents: 170_000, length: 60,
-                            schedule: %w[1 4])
-student.teachers << user.teacher
-student.save!
-
-student = teacher.students.new(name: 'Миша', contact_details: '', classroom_id: '',
-                               wage_cents: 150_000, length: 60, schedule: %w[2 4])
-student.teachers << user.teacher
-student.save!
-
-student = teacher.students.new(name: 'Егор', contact_details: 'Егор', classroom_id: '', wage_cents: 120_000, length: 60,
-                            schedule: %w[1 3], payment_type: :pass)
-student.teachers << user.teacher
-student.save!
-
-student = teacher.students.new(name: 'Алена', contact_details: '', classroom_id: '',
-                               wage_cents: 190_000, length: 60, schedule: %w[2 4])
-student.teachers << user.teacher
-student.save!
-
-student = teacher.students.new(name: 'Мария', contact_details: 'Егор', classroom_id: '', wage_cents: 170_000, length: 60,
-                            schedule: %w[1 4])
-student.teachers << user.teacher
-student.save!
-
-student = teacher.students.new(name: 'Сергей', contact_details: '', classroom_id: '',
-                               wage_cents: 200_000, length: 60, schedule: %w[2 4], payment_type: :pass)
-student.teachers << user.teacher
-student.save!
+# student = teacher.students.new(name: 'Иван', contact_details: '', classroom_id: '', wage_cents: 170_000, length: 60,
+#                             schedule: %w[1 4])
+# student.teachers << user.teacher
+# student.save!
+#
+# student = teacher.students.new(name: 'Миша', contact_details: '', classroom_id: '',
+#                                wage_cents: 150_000, length: 60, schedule: %w[2 4])
+# student.teachers << user.teacher
+# student.save!
+#
+# student = teacher.students.new(name: 'Егор', contact_details: 'Егор', classroom_id: '', wage_cents: 120_000, length: 60,
+#                             schedule: %w[1 3], payment_type: :pass)
+# student.teachers << user.teacher
+# student.save!
+#
+# student = teacher.students.new(name: 'Алена', contact_details: '', classroom_id: '',
+#                                wage_cents: 190_000, length: 60, schedule: %w[2 4])
+# student.teachers << user.teacher
+# student.save!
+#
+# student = teacher.students.new(name: 'Мария', contact_details: 'Егор', classroom_id: '', wage_cents: 170_000, length: 60,
+#                             schedule: %w[1 4])
+# student.teachers << user.teacher
+# student.save!
+#
+# student = teacher.students.new(name: 'Сергей', contact_details: '', classroom_id: '',
+#                                wage_cents: 200_000, length: 60, schedule: %w[2 4], payment_type: :pass)
+# student.teachers << user.teacher
+# student.save!
 #
 # User.create(login: 'valeria', password: '123456')
 # User.create(login: 'tatiyana', password: '123456')
