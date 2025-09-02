@@ -209,7 +209,7 @@ nav {
     @apply bg-secondary flex-col rounded-sm items-center justify-center px-2 py-1 text-text-dark text-sm shadow-md hidden;
   }
 
-  &:hover .menu {
+  &:focus .menu {
     @apply visible flex;
   }
 

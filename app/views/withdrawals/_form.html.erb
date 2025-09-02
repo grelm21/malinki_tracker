@@ -1,4 +1,4 @@
-<%= form_with model: [teacher, withdrawal] do |form| %>
+<%= form_with model: [teacher, withdrawal], html: { autocomplete: 'off' } do |form| %>
   <div class='new-edit-wrapper'>
     <div>
       <%= form.text_field :amount, value: humanized_money(classrooms_student.classroom.wage), class: 'text-field', placeholder: 'сумма' %>
