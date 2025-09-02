@@ -1,4 +1,4 @@
-user = User.create(login: 'Grigorii', email: 'ex@ya.ru', password: '123456', approved: true)
+user = User.create(login: 'grelm', email: 'ex@ya.ru', password: '123456', approved: true)
 user.add_role(:admin)
 teacher = user.teacher
 
@@ -31,11 +31,11 @@ student = teacher.students.new(name: 'Сергей', contact_details: '', classr
                                wage_cents: 200_000, length: 60, schedule: %w[2 4], payment_type: :pass)
 student.teachers << user.teacher
 student.save!
-
-User.create(login: 'valeria', password: '123456')
-User.create(login: 'tatiyana', password: '123456')
-User.create(login: 'valentina', password: '123456')
-User.create(login: 'anna', password: '123456')
+#
+# User.create(login: 'valeria', password: '123456')
+# User.create(login: 'tatiyana', password: '123456')
+# User.create(login: 'valentina', password: '123456')
+# User.create(login: 'anna', password: '123456')
 
 # classroom = teacher.classrooms.create!(name: 'Upper-Intermediate', wage_cents: 140000, length: 90,
 #                                     schedule: %w[5 6 0], class_format: :multi)

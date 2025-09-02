@@ -4,7 +4,7 @@ services:
     container_name: application
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: ./docker-config/Dockerfile
     env_file:
       - .env
     environment:
@@ -15,24 +15,71 @@ services:
       - ./:/var/www/malinki_tracker
     depends_on:
       - db
+    networks:
+      - internal_network
       
   db:
     container_name: postgres
     image: postgres
     environment:
-      POSTGRES_USER: malinki_tracker
-      POSTGRES_PASSWORD: kj98bO_oui78GH
-      PGDATA: /tmp
+      POSTGRES_USER: ${PG_USERNAME}
+      POSTGRES_PASSWORD: ${PG_PASSWORD}
+      # PGDATA: /tmp
     ports:
       - '5432:5432'
+    networks:
+      - internal_network
     volumes:
       - postgres:/var/lib/postgresql/data
       # - ./config/docker/gis.sh:/docker-entrypoint-initdb.d/gis.sh
       # If postgres container contain file with permissions postgres:postrges
       # stop container then comment string below, up container without string and rebuild with uncommented string
       # problem seen on docker-desktop mac os x
-      - ./postgresql.conf:/var/lib/postgresql/data/postgresql.conf
+      - ./docker-config/postgresql.conf:/var/lib/postgresql/data/postgresql.conf
+
+  redis:
+    image: redis:latest
+    ports:
+      - "6379:6379"
+    volumes:
+      - ./redisdata:/data
+    environment:
+      REDIS_PASSWORD: ${REDIS_PASSWORD}
+    deploy:
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: 512M
+        reservations:
+          cpus: '0.25'
+          memory: 256M
+    command: redis-server --save 20 1 --loglevel warning --requirepass ${REDIS_PASSWORD}
+    restart: unless-stopped
+    tty: true
+    stdin_open: true
+    networks:
+      - internal_network
+
+  nginx:
+      build:
+        context: .
+        dockerfile: docker-config/Dockerfile.nginx
+      ports:
+        - '80:80'
+      volumes:
+        - ./tmp/sockets:/tmp/sockets
+        - ./log:/var/www/rails/log
+      networks:
+        - internal_network
+      depends_on:
+        - application
+      restart: always
 
 volumes:
   postgres:
     driver: local
+  redis:
+    driver: local
+
+networks:
+  internal_network:
