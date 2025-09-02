@@ -20,8 +20,8 @@ services:
     container_name: postgres
     image: postgres
     environment:
-      POSTGRES_USER: malinki_tracker
-      POSTGRES_PASSWORD: kj98bO_oui78GH
+      POSTGRES_USER: ${PG_USERNAME}
+      POSTGRES_PASSWORD: ${PG_PASSWORD}
       PGDATA: /tmp
     ports:
       - '5432:5432'
@@ -33,6 +33,29 @@ services:
       # problem seen on docker-desktop mac os x
       - ./postgresql.conf:/var/lib/postgresql/data/postgresql.conf
 
+  redis:
+    image: redis:latest
+    ports:
+      - "6379:6379"
+    volumes:
+      - ./redisdata:/data
+    environment:
+      REDIS_PASSWORD: ${REDIS_PASSWORD}
+    deploy:
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: 512M
+        reservations:
+          cpus: '0.25'
+          memory: 256M
+    command: redis-server --save 20 1 --loglevel warning --requirepass ${REDIS_PASSWORD}
+    restart: unless-stopped
+    tty: true
+    stdin_open: true
+
 volumes:
   postgres:
+    driver: local
+  redis:
     driver: local
