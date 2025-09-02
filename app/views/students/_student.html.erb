@@ -36,7 +36,7 @@
             <%= humanized_money_with_symbol classroom.wage %>
           </div>
           <div class='tag'>
-            <%= classrooms_students_from_classroom(classroom, student).payment_type %>
+            <%= payment_dict(classrooms_students_from_classroom(classroom, student).payment_type) %>
           </div>
         </div>
         <% if classrooms_students_from_classroom(classroom, student).pass? %>

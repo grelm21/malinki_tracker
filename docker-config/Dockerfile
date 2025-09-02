@@ -93,7 +93,7 @@ RUN bundle install --jobs 20 --retry 5
 
 RUN npm install
 
-RUN chmod +x ./docker-entrypoint.sh
+RUN chmod +x ./docker-config/docker-entrypoint.sh
 
 EXPOSE 3000
-ENTRYPOINT ["./docker-entrypoint.sh"]
+ENTRYPOINT ["./docker-config/docker-entrypoint.sh"]
