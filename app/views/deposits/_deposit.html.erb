@@ -1,0 +1,8 @@
+<div class='deposit-card items-center'>
+  <div class='flex flex-1'><%= l(deposit.issued_at.to_date, format: :default) %> (<%= l(deposit.issued_at, format: '%a') %>): <%= humanized_money_with_symbol deposit.amount %></div>
+  <button data-modal-target="deposit-edit-<%= deposit.id %>" data-modal-toggle="deposit-edit-<%= deposit.id %>" type="button" class='flex items-center'>
+    <div class="icon-gear"></div>
+  </button>
+</div>
+
+<%= render 'deposits/edit_modal', deposit: %>

@@ -1,0 +1,10 @@
+<% if resource.errors.any? %>
+  <div class="absolute warning-card -top-4 -right-2 flex-col">
+    <div class="icon-close justify-self-end cursor-pointer" onclick="this.parentElement.remove()"></div>
+    <ul>
+      <% resource.errors.each do |error| %>
+        <li><%= error.full_message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>

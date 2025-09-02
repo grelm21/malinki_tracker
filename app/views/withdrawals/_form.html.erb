@@ -1,0 +1,12 @@
+<%= form_with model: [teacher, withdrawal] do |form| %>
+  <div class='new-edit-wrapper'>
+    <div>
+      <%= form.text_field :amount, value: humanized_money(classrooms_student.classroom.wage), class: 'text-field', placeholder: 'сумма' %>
+    </div>
+    <div>
+      <%= form.date_field :issued_at, value: Date.today, class: 'text-field'%>
+    </div>
+    <%= form.hidden_field :classrooms_student_id, value: classrooms_student.id %>
+    <%= form.submit 'проведено и оплачено', class: "submit-button" %>
+  </div>
+<% end %>

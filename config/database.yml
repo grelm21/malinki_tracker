@@ -85,4 +85,3 @@ production:
   <<: *default
   database: malinki_tracker_production
   username: malinki_tracker
-  password: <%= ENV["MALINKI_TRACKER_DATABASE_PASSWORD"] %>

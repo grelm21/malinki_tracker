@@ -23,16 +23,12 @@ gem "turbo-rails"
 # Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
 gem "stimulus-rails"
 
-gem 'tailwindcss-ruby'
-
-# Use Tailwind CSS [https://github.com/rails/tailwindcss-rails]
-gem "tailwindcss-rails"
-
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
 
 # Use Redis adapter to run Action Cable in production
-# gem "redis", ">= 4.0.1"
+gem "redis", ">= 4.0.1"
+gem "redis-namespace"
 
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
@@ -67,6 +63,10 @@ group :development do
   # gem "spring"
 end
 
+group :development, :production do
+  gem 'rails_performance'
+end
+
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem "capybara"
@@ -74,3 +74,10 @@ group :test do
 end
 
 gem 'devise', '~> 4.8.1'
+gem 'devise-i18n'
+
+gem "tailwindcss-rails", "~> 4.3"
+gem 'money-rails', '~> 1.12'
+gem 'i18n'
+gem 'rails-i18n', '~> 7.0.0'
+gem 'rolify', '~> 6.0'

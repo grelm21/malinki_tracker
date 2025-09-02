@@ -1,0 +1,8 @@
+<div class='flex flex-row gap-2 items-center justify-start'>
+  <div class="header"><%= user.login %></div>
+  <div class="<%= user_status_decorator(user) %>"><%= user_status_dict(user) %></div>
+  <% unless user.approved? %>
+    <%= button_to 'подтвердить', user_path(user, user: { approved: true }), method: :patch, class: 'submit-button' %>
+    <%= button_to 'удалить', user_path(user), method: :delete, class: 'cancel-button' %>
+  <% end %>
+</div>

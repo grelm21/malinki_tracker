@@ -7,11 +7,17 @@
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag "tailwind", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
   </head>
-
-  <body class="bg-gray-200">
-    <main class="container mx-auto mt-28 px-5 flex">
+  <body class="relative bg-gray-200 px-5 xl:px-0 h-screen">
+    <% if current_user %>
+      <%= render 'navigation/top_bar' %>
+      <%= render 'navigation/floating_button' %>
+    <% end %>
+    <%= render 'elements/flash_error' %>
+    <div class="main">
       <%= yield %>
-    </main>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
   </body>
 </html>

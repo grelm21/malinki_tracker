@@ -1,1 +1,11 @@
-<%= button_to 'Sign out', destroy_user_session_path, method: :delete %>
+<div class="flex flex-col gap-y-4">
+  <%= render 'elements/statistics', action_name: :dashboard %>
+  <%= render 'elements/date_pick', date: @date %>
+</div>
+<div class='classrooms_wrapper'>
+  <% if @classrooms.any? %>
+    <%= render @classrooms %>
+  <% else %>
+    <%= render 'elements/notice', message: 'На сегодня нет уроков. Отдыхайте =)' %>
+  <% end %>
+</div>

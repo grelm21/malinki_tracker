@@ -1,0 +1,11 @@
+<div class="floating-button-wrapper">
+  <div class="main-button">
+    <div class="icon-add h-16 w-16"></div>
+  </div>
+  <div class='menu'>
+    <div class='menu-button'>добавть класс</div>
+    <%= link_to 'добавить студента', new_teacher_student_path(current_user.teacher), class: 'menu-button' %>
+    <div class='menu-button'>настройки</div>
+    <div class='menu-button'>cтатистика</div>
+  </div>
+</div>

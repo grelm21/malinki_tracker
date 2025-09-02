@@ -1,0 +1,19 @@
+<nav>
+  <%= link_to 'M-Tracker', root_path, class: 'flex t-white justify-self-start' %>
+  <div class='flex flex-1 items-center justify-end gap-4'>
+  <div class='t-white'><%= current_user.login %></div>
+  <% if current_user.admin? %>
+    <%= link_to users_path, class: 'relative justify-center items-center' do %>
+      <div class='icon-users'></div>
+      <div class='absolute -top-2 -right-2'>
+        <% if User.new_teachers? %>
+          <div class='flex rounded-lg bg-warning text-[10px] px-[4px] text-text-light'>new</div>
+        <% end %>
+      </div>
+    <% end %>
+  <% end %>
+  <%= button_to destroy_user_session_path, method: :delete, class: "flex items-center justify-center" do %>
+    <div class='icon-sign-out'></div>
+  <%end%>
+  </div>
+</nav>
