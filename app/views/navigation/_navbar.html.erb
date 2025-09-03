@@ -12,8 +12,7 @@
       </div>
     <% end %>
   <% end %>
-  <%= button_to destroy_user_session_path, method: :delete, class: "flex items-center justify-center" do %>
-    <div class='icon-sign-out'></div>
-  <%end%>
+  <button id="dropdownDefaultButton" data-dropdown-toggle="dropdown" class='icon-menu cursor-pointer'></button>
+  <%= render 'navigation/dropdown' %>
   </div>
 </nav>
