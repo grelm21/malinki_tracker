@@ -9,7 +9,7 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
-  <body class="relative bg-gray-200 px-5 xl:px-0 h-screen">
+  <body class="relative bg-gray-200 h-screen">
     <% if current_user %>
       <%= render 'navigation/top_bar' %>
       <%= render 'navigation/floating_button' %>

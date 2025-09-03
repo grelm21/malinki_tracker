@@ -5,4 +5,8 @@ module WithdrawalsHelper
 
     false
   end
+
+  def line_through_decorator(classroom, student, date)
+    'line-through'.html_safe if withdrawal_for_current_day?(classroom, student, date)
+  end
 end
