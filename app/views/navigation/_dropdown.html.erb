@@ -1,0 +1,16 @@
+<div id="dropdown" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44">
+  <ul class="py-2 text-sm text-gray-700" aria-labelledby="dropdownDefaultButton">
+    <li>
+      <%= link_to 'Добавить ученика', new_teacher_student_path(current_user.teacher), class: "block px-4 py-2 hover:bg-gray-100" %>
+    </li>
+    <li>
+      <a href="#" class="block px-4 py-2 hover:bg-gray-100">Добавить класс</a>
+    </li>
+    <li>
+      <a href="#" class="block px-4 py-2 hover:bg-gray-100">Настройки</a>
+    </li>
+    <li>
+      <%= button_to "Выйти", destroy_user_session_path, method: :delete, class: "block px-4 py-2 text-red-500 hover:font-bold cursor-pointer" %>
+    </li>
+  </ul>
+</div>
