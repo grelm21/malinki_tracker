@@ -16,6 +16,9 @@
     <% end %>
     <%= render 'elements/flash_error' %>
     <div class="main">
+      <% unless controller_name.eql?('pages') or !current_user %>
+        <%= render 'navigation/breadcrumbs' %>
+      <% end %>
       <%= yield %>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>

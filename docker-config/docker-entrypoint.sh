@@ -7,4 +7,4 @@ if [ -f tmp/pids/server_1.pid ]; then
 fi
 
 # bundle exec puma -C config/puma.rb
-bundle exec rails s -b 0.0.0.0 -e 
+bundle exec rails s -b 0.0.0.0 -e development
