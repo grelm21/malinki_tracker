@@ -1,18 +1,7 @@
 <div>
   <div class='classroom-wrapper'>
     <div class='classroom-card'>
-      <div><%= link_to classroom.name, classroom_path(classroom), class: "#{classroom_status(classroom)}" %></div>
-      <div class='tags_wrapper justify-center'>
-        <div class='tag'>
-          <%= classroom.length%> мин.
-        </div>
-        <div class='tag'>
-          <%= classroom.schedule.map { |d| t('date.abbr_day_names')[d.to_i] }.join(" ") %>
-        </div>
-        <div class='tag'>
-          <%= humanized_money_with_symbol classroom.wage %>
-        </div>
-      </div>
+      <div><%= link_to "#{classroom.name} (#{class_format_dict(classroom.class_format)})", classroom_path(classroom), class: 'classroom-name' %></div>
     </div>
     <div class='students-wrapper'>
       <div>
