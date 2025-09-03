@@ -8,4 +8,11 @@ module ClassroomsHelper
   def schedule_num_days
     (1..6).to_a.push(0)
   end
+
+  def class_format_dict(class_format)
+    {
+      'multi' => 'группа',
+      'single' => 'индивидуально'
+    }[class_format]
+  end
 end
