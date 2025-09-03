@@ -23,4 +23,10 @@ module StudentsHelper
       'pass' => 'абонемент'
     }[payment_type]
   end
+
+  def name_dict(classroom, student)
+    student.name.concat(', ') if classroom.multi?
+
+    'открыть профиль, ' if classroom.single?
+  end
 end

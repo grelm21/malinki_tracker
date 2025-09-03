@@ -38,7 +38,7 @@ class User < ApplicationRecord
   end
 
   def self.new_teachers?
-    User.with_new_teachers_count > 1
+    User.with_new_teachers_count >= 1
   end
 
   private

@@ -1,5 +1,6 @@
 module PagesHelper
   def date_dict(date)
-    date.today? ? 'сегодня' : date.strftime('%d.%m.%Y').concat(" (#{l(date, format: '%a').downcase})")
+    day = date.today? ? ' (сегодня)' : " (#{l(date, format: '%a').downcase})"
+    date.strftime('%d.%m.%Y').concat(day)
   end
 end
