@@ -1,12 +1,8 @@
 <div>
   <div class='classroom-wrapper'>
-    <div class='classroom-card'>
+    <div class='classroom-card flex flex-row gap-basic'>
       <div><%= link_to "#{classroom.name} (#{class_format_dict(classroom.class_format)})", classroom_path(classroom), class: 'classroom-name' %></div>
-      <div class='students-wrapper'>
-        <div>
-          <%= render "withdrawals/collection_form", classroom: ,date: @date %>
-        </div>
-      </div>
+        <%= render "withdrawals/collection_form", classroom: ,date: @date %>
     </div>
   </div>
 </div>

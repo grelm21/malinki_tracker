@@ -2,10 +2,9 @@
   <%= render 'elements/statistics', action_name: :dashboard %>
   <%= render 'elements/date_pick', date: @date %>
 </div>
-<div class='classrooms_wrapper'>
-  <% if @classrooms.any? %>
-    <%= render @classrooms %>
-  <% else %>
-    <%= render 'elements/notice', message: 'На сегодня нет уроков. Отдыхайте =)' %>
-  <% end %>
-</div>
+<div class="flex mx-auto xl:col-span-2 bold-text text-xl">Занятия</div>
+<% if @classrooms.any? %>
+  <%= render @classrooms %>
+<% else %>
+  <%= render 'elements/notice', message: 'На сегодня нет уроков. Отдыхайте =)' %>
+<% end %>

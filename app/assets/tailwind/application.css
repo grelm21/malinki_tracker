@@ -23,7 +23,7 @@
   --font-mulish: 'Mulish', sans-serif;
 
   --font-weight-normal: 400;
-  --font-weight-semihard: 600;
+  --font-weight-semihard: 700;
   --font-weight-hard: 800;
 }
 
@@ -65,8 +65,8 @@ nav {
   @apply font-normal;
 }
 
-.classrooms_wrapper {
-  @apply grid grid-cols-1 xl:grid-cols-2 gap-x-5 gap-y-7;
+.date-pick-card {
+  @apply mx-auto flex flex-row gap-x-2 justify-between items-center bg-primary px-5 py-2 rounded-md text-text-dark font-semihard border-1 border-secondary w-full xl:max-w-1/4;
 }
 
 .classroom-wrapper {
@@ -74,11 +74,11 @@ nav {
 }
 
 .classroom-card {
-  @apply relative shadow-sm bg-primary px-5 py-2 flex flex-col justify-between rounded-md; 
+  @apply relative bg-primary px-5 py-2 flex flex-col justify-between rounded-md shadow-lg; 
 }
 
 .classroom-name {
-  @apply inline-block justify-start items-center text-lg text-text-dark font-semibold hover:font-bold;
+  @apply inline-block justify-start items-center text-lg text-text-dark font-semibold hover:font-bold cursor-pointer;
 }
 
 .classroom-name-inactive {
