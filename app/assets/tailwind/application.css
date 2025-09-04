@@ -19,8 +19,8 @@
   --spacing-basic: 1rem;
   --spacing-large: 2rem;
 
-  --font-manrope: 'Manrope', sans-serif;
-  --font-mulish: 'Mulish', sans-serif;
+  --font-manrope: "Manrope", sans-serif;
+  --font-mulish: "Mulish", sans-serif;
 
   --font-weight-normal: 400;
   --font-weight-semihard: 700;
@@ -46,7 +46,7 @@ nav {
 }
 
 /* .main { */
-  /* @apply relative container p-5 my-[69px] xl:my-5 w-full xl:max-w-[1280px] grid grid-flow-row bg-white rounded-lg sm:mx-auto gap-4; */
+/* @apply relative container p-5 my-[69px] xl:my-5 w-full xl:max-w-[1280px] grid grid-flow-row bg-white rounded-lg sm:mx-auto gap-4; */
 /* } */
 
 .main {
@@ -74,7 +74,7 @@ nav {
 }
 
 .classroom-card {
-  @apply relative bg-primary px-5 py-2 flex flex-col justify-between rounded-md shadow-lg; 
+  @apply relative bg-primary px-5 py-2 flex flex-col justify-between rounded-md shadow-lg;
 }
 
 .classroom-name {
@@ -315,3 +315,9 @@ nav {
 .notice-card {
   @apply bg-info px-2 py-1 text-text-light text-sm shadow-md rounded-lg max-w-xs  text-center;
 }
+
+input[type="checkbox"] {
+  @apply appearance-none border-3 border-accent text-accent rounded-sm focus:ring-0 focus:ring-white focus:bg-white;
+}
+
+
