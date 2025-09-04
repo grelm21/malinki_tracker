@@ -15,7 +15,9 @@
   --color-warning: #d97706; /* янтарный для предупреждений */
   --color-info: #2563eb; /* синий для инфо-меток */
 
+  --spancing-small: 0.5rem;
   --spacing-basic: 1rem;
+  --spacing-large: 2rem;
 
   --font-manrope: 'Manrope', sans-serif;
   --font-mulish: 'Mulish', sans-serif;
@@ -25,19 +27,21 @@
   --font-weight-hard: 800;
 }
 
+/* от XL начинаем сетку на две колонки */
+
 body {
-  @apply bg-background;
+  @apply bg-background font-mulish;
 }
 
 nav {
   @apply flex z-10 items-center fixed top-0 xl:relative w-full h-[64px] p-basic shadow-md gap-5 bg-primary text-text-dark;
 
   .logo {
-    @apply text-2xl font-mulish font-hard;
+    @apply text-2xl font-hard;
   }
 
   .t-white {
-    @apply font-mulish font-hard;
+    @apply font-hard;
   }
 }
 
@@ -46,7 +50,19 @@ nav {
 /* } */
 
 .main {
-  @apply relative container p-10 w-full grid grid-cols-2 gap-basic;
+  @apply relative p-large grid grid-flow-row xl:grid-cols-2 gap-basic;
+}
+
+.bold-text {
+  @apply font-hard;
+}
+
+.semibold-text {
+  @apply font-semihard;
+}
+
+.normal-text {
+  @apply font-normal;
 }
 
 .classrooms_wrapper {
