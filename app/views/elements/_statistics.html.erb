@@ -1,6 +1,6 @@
-<div class="flex w-full">
-  <div class='flex w-fit flex-col justify-end rounded-lg shadow-md p-2 gap-y-2 bg-info text-text-light'>
-    <div><span class="header-light">сумма за день:</span> <%= humanized_money_with_symbol @sum_for_day %></div>
-    <div><span class="header-light">сумма за месяц:</span> <%= humanized_money_with_symbol @sum_for_month %></div>
+<div class="flex w-full justify-center">
+  <div class='flex w-fit flex-col text-xl gap-y-small bold-text text-center'>
+    <div>Сумма за день: <%= humanized_money_with_symbol @sum_for_day %></div>
+    <div>Сумма за месяц: <%= humanized_money_with_symbol @sum_for_month %></div>
   </div>
 </div>

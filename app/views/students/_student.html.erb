@@ -1,19 +1,18 @@
   <% if action_name.eql? :classroom %>
-  <div class='student-wrapper'>
-    <div class="flex items-center gap-x-2">
-      <%= link_to name_dict(classroom, student), student, class: "font-semibold hover:font-bold" %>
-      <% if classrooms_students_from_classroom(classroom, student).pass? %>
-        <div class="<%= line_through_decorator(classroom, student, date) %> <%= classroom_student_decorator(@left_deposits, classroom, student, classroom.wage) %>">остаток депозита: <%= humanized_money_with_symbol show_left_deposit(@left_deposits, classroom, student) %></div>
-        <%= chb.check_box class: 'checkbox', checked: sufficient_deposit?(@left_deposits, classroom, student, classroom.wage) && !withdrawal_for_current_day?(classroom, student, date), disabled: !sufficient_deposit?(@left_deposits, classroom, student, classroom.wage) || withdrawal_for_current_day?(classroom, student, date) %>
-      <% end %>
-      <% if classrooms_students_from_classroom(classroom, student).regular? %>
-        <div class=" <%= line_through_decorator(classroom, student, date) %>">разовая оплата: <%= humanized_money_with_symbol classroom.wage %></div>
-        <%= chb.check_box class: 'checkbox', checked: !withdrawal_for_current_day?(classroom, student, date), disabled: withdrawal_for_current_day?(classroom, student, date) %>
-      <% end %>
-    </div>
+  <%= link_to name_dict(classroom, student), student, class: "font-semibold hover:font-bold" %>
+  <div class='flex flex-row gap-2 items-center'>
+  <% if classrooms_students_from_classroom(classroom, student).pass? %>
+    <%= chb.check_box class: 'checkbox', checked: sufficient_deposit?(@left_deposits, classroom, student, classroom.wage) && !withdrawal_for_current_day?(classroom, student, date), disabled: !sufficient_deposit?(@left_deposits, classroom, student, classroom.wage) || withdrawal_for_current_day?(classroom, student, date) %>
+    <div class="<%= line_through_decorator(classroom, student, date) %> <%= classroom_student_decorator(@left_deposits, classroom, student, classroom.wage) %>">остаток депозита: <%= humanized_money_with_symbol show_left_deposit(@left_deposits, classroom, student) %></div>
+  <% end %>
+  <% if classrooms_students_from_classroom(classroom, student).regular? %>
+    <%= chb.check_box checked: !withdrawal_for_current_day?(classroom, student, date), disabled: withdrawal_for_current_day?(classroom, student, date) %>
+    <div class=" <%= line_through_decorator(classroom, student, date) %>">разовая оплата: <%= humanized_money_with_symbol classroom.wage %></div>
+  <% end %>
   </div>
 <% end %>
 <% if action_name.eql? 'show' %>
+  <div class='flex flex-col xl:col-span-2 gap-basic justify-center'>
   <div class="header justify-self-center"><%= student.name %></div>
   <div class="grid grid-flow-row gap-y-4">
     <% @classrooms.each do |classroom| %>
@@ -32,10 +31,8 @@
           <div class='tag'>
             <%= humanized_money_with_symbol classroom.wage %>
           </div>
-          <div class='tag'>
-            <%= payment_dict(classrooms_students_from_classroom(classroom, student).payment_type) %>
-          </div>
         </div>
+        <%= render 'classrooms_students/form', classrooms_student: classrooms_students_from_classroom(classroom, student) %>
         <% if classrooms_students_from_classroom(classroom, student).pass? %>
           <div class='header'>остаток: <%= humanized_money_with_symbol @left_deposits[classrooms_students_from_classroom(classroom, student).id] %></div>
           <div class='flex justify-center font-bold color-text-dark'>последние абонементы</div>
@@ -52,5 +49,6 @@
       </div>
       <%= render "classrooms/edit_modal", classroom:, student: %>
     <% end %>
+  </div>
   </div>
 <% end %>

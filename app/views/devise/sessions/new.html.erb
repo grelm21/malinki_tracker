@@ -1,4 +1,4 @@
-<%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "flex flex-col gap-4 justify-center items-center" }) do |f| %>
+<%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "flex flex-col xl:col-span-2 gap-4 justify-center items-center" }) do |f| %>
   <div class="header">m-tracker - вход</div>
   <%= render "devise/shared/error_messages", resource: resource %>
   <div class="">

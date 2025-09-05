@@ -1,18 +1,15 @@
 <nav>
-  <%= link_to 'M-Tracker', root_path, class: 'flex t-white justify-self-start' %>
+  <%= link_to 'M-Tracker', root_path, class: 'flex justify-self-start logo' %>
   <div class='flex flex-1 items-center justify-end gap-4'>
-  <div class='t-white'><%= current_user.login %></div>
-  <% if current_user.admin? %>
-    <%= link_to users_path, class: 'relative justify-center items-center' do %>
-      <div class='icon-users'></div>
-      <div class='absolute -top-2 -right-2'>
-        <% if User.new_teachers? %>
+    <div class='t-white'><%= current_user.login %></div>
+    <button id="dropdownDefaultButton" data-dropdown-toggle="dropdown" type="button" class="relative cursor-pointer">
+      <%= render 'icons/hamburger', width: '32', height: '32' %>
+      <% if current_user.admin? && User.new_teachers? %>
+        <div class='absolute -top-1 -right-2'>
           <div class='flex rounded-lg bg-warning text-[10px] px-[4px] text-text-light'>new</div>
-        <% end %>
-      </div>
-    <% end %>
-  <% end %>
-  <button id="dropdownDefaultButton" data-dropdown-toggle="dropdown" class='icon-menu cursor-pointer'></button>
-  <%= render 'navigation/dropdown' %>
+        </div>
+      <% end %>
+    </button>
+    <%= render 'navigation/dropdown' %>
   </div>
 </nav>
