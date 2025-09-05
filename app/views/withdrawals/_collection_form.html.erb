@@ -1,14 +1,12 @@
-<%= form_with url: create_collection_teacher_withdrawals_path(current_user.teacher), method: :post, scope: :withdrawal do |form| %>
-  <%= form.collection_check_boxes :classrooms_student_ids, classroom.classrooms_students, :id, :id, { include_hidden: false }, { class: 'grid grid-flow-row justify-end'} do |chb| %>
-    <div class='flex justify-end'>
+<%= form_with url: create_collection_teacher_withdrawals_path(current_user.teacher), html: {class: "grid grid-flow-row gap-basic" }, method: :post, scope: :withdrawal do |form| %>
+  <div class="grid grid-flow-row gap-small">
+    <%= form.collection_check_boxes :classrooms_student_ids, classroom.classrooms_students, :id, :id, { include_hidden: false } do |chb| %>
       <%= render chb.object.student, classroom: classroom, action_name: :classroom, chb:, date: date %>
-    </div>
-  <% end %>
-  <div class='new-edit-wrapper items-end justify-end'>
-    <%= form.hidden_field :amount, value: humanized_money(classroom.wage) %>
-    <%= form.hidden_field :issued_at, value: date %>
-    <div class='items-center justify-end'>
-      <%= form.submit 'проведено', class: "submit-button" %>
-    </div>
+    <% end %>
+  </div>
+  <%= form.hidden_field :amount, value: humanized_money(classroom.wage) %>
+  <%= form.hidden_field :issued_at, value: date %>
+  <div class='items-center'>
+    <%= form.submit 'проведено', class: "submit-button" %>
   </div>
 <% end %>

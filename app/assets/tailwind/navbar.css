@@ -3,3 +3,7 @@
 .nav_base{
   @apply flex flex-row items-center justify-between w-full h-[64px] bg-gray-200 px-5 py-2;
 }
+
+.some {
+  @apply text-red-800
+}
