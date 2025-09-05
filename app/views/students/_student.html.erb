@@ -12,6 +12,7 @@
   </div>
 <% end %>
 <% if action_name.eql? 'show' %>
+  <div class='flex flex-col xl:col-span-2 gap-basic justify-center'>
   <div class="header justify-self-center"><%= student.name %></div>
   <div class="grid grid-flow-row gap-y-4">
     <% @classrooms.each do |classroom| %>
@@ -50,5 +51,6 @@
       </div>
       <%= render "classrooms/edit_modal", classroom:, student: %>
     <% end %>
+  </div>
   </div>
 <% end %>
