@@ -1,4 +1,4 @@
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "flex flex-col gap-4 justify-center items-center", autocomplete: "off" }) do |f| %>
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "flex flex-col xl:col-span-2 gap-4 justify-center items-center", autocomplete: "off" }) do |f| %>
   <div class="header">m-tracker - регистрация</div>
 
   <%= render "devise/shared/error_messages", resource: resource %>

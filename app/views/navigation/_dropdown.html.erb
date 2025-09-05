@@ -11,7 +11,7 @@
     </li>
     <% if current_user.admin? %>
       <li>
-        <a href="#" class="block px-4 py-2 hover:bg-gray-100">Новые пользователи</a>
+        <%= link_to 'Новые пользователи', users_path, class: "block px-4 py-2 hover:bg-gray-100" %>
       </li>
     <% end %>
     <li>
