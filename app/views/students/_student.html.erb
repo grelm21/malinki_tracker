@@ -31,10 +31,8 @@
           <div class='tag'>
             <%= humanized_money_with_symbol classroom.wage %>
           </div>
-          <div class='tag'>
-            <%= payment_dict(classrooms_students_from_classroom(classroom, student).payment_type) %>
-          </div>
         </div>
+        <%= render 'classrooms_students/form', classrooms_student: classrooms_students_from_classroom(classroom, student) %>
         <% if classrooms_students_from_classroom(classroom, student).pass? %>
           <div class='header'>остаток: <%= humanized_money_with_symbol @left_deposits[classrooms_students_from_classroom(classroom, student).id] %></div>
           <div class='flex justify-center font-bold color-text-dark'>последние абонементы</div>
