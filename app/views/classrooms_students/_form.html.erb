@@ -1,0 +1,18 @@
+<%= form_with model: classrooms_student, method: :patch, html: {class: 'flex flex-col gap-y-2'} do |f| %>
+  <div class="font-bold">Тип оплаты:</div>
+  <div>
+    <%= f.radio_button :payment_type, 'pass', checked: classrooms_student.pass?, class: "text-text-dark focus:ring-0", disabled: !can_change_payment_type?(classrooms_student, @left_deposits[classrooms_student.id]) %>
+    <%= f.label :payment_type, 'абонемент' %>
+  </div>
+  <div>
+    <%= f.radio_button :payment_type, 'regular', checked: classrooms_student.regular?, class: "text-text-dark focus:ring-0", disabled: !can_change_payment_type?(classrooms_student, @left_deposits[classrooms_student.id]) %>
+    <%= f.label :payment_type, 'разовая оплата' %>
+  </div>
+  <div>
+    <% if can_change_payment_type?(classrooms_student, @left_deposits[classrooms_student.id]) %>
+      <%= f.submit 'сохранить', class: 'submit-button' %>
+    <% else %>
+        <div class="text-warning">Невозможно поменять тип оплаты пока у ученика есть остаток депозита</div>
+    <% end %>
+  </div>
+<% end %>
