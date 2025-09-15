@@ -2,7 +2,7 @@
   <%= render 'elements/statistics', action_name: :dashboard %>
   <%= render 'elements/date_pick', date: @date %>
 </div>
-<div class="flex mx-auto xl:col-span-2 bold-text text-xl">Занятия</div>
+<div class="flex mx-auto xl:col-span-2 bold-text text-xl align-centerr">Занятия</div>
 <% if @classrooms.any? %>
   <%= render @classrooms %>
 <% else %>

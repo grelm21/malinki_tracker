@@ -12,9 +12,10 @@ class Withdrawal < ApplicationRecord
   after_create :add_deposit, if: -> { classrooms_student.regular? }
   before_destroy :delete_deposits, if: -> { classrooms_student.regular? }
 
-  scope :total_withdrawals_for_classrooms_student, lambda { |cs_ids|
+  scope :total_withdrawals_for_classrooms_student, lambda { |cs_ids, date|
     ClassroomsStudent.where(id: cs_ids)
                      .left_outer_joins(:withdrawals)
+                     .where(withdrawals: { issued_at: ..date.end_of_day })
                      .group(:id)
                      .sum(:amount_cents)
                      .transform_values do |cents|
@@ -25,6 +26,11 @@ class Withdrawal < ApplicationRecord
   scope :by_date, -> { order(issued_at: :desc) }
   scope :sum_for_day, lambda { |date|
     sum = where(issued_at: date.beginning_of_day..date.end_of_day).sum(:amount_cents)
+    Money.new(sum, 'RUB')
+  }
+
+  scope :sum_for_week, lambda { |date|
+    sum = where(issued_at: date.beginning_of_week.beginning_of_day..date.end_of_week.end_of_day).sum(:amount_cents)
     Money.new(sum, 'RUB')
   }
 

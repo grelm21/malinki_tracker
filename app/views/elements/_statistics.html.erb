@@ -1,6 +1,8 @@
 <div class="flex w-full justify-center">
   <div class='flex w-fit flex-col text-xl gap-y-small bold-text text-center'>
     <div>Сумма за день: <%= humanized_money_with_symbol @sum_for_day %></div>
+    <div>Сумма за неделю: <%= humanized_money_with_symbol @sum_for_week %></div>
     <div>Сумма за месяц: <%= humanized_money_with_symbol @sum_for_month %></div>
+    <div>Остаток депозитов: <%= humanized_money_with_symbol @left_deposits_sum_up_to_date.values.sum %></div>
   </div>
 </div>

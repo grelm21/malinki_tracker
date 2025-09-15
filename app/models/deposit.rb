@@ -7,20 +7,20 @@ class Deposit < ApplicationRecord
     joins(:classrooms_student).where(classrooms_students: { student:, classroom: })
   }
 
-  scope :total_deposits_for_classrooms_student, lambda { |cs_ids|
+  scope :total_deposits_for_classrooms_student, lambda { |cs_ids, date|
     ClassroomsStudent.where(id: cs_ids)
                      .left_outer_joins(:deposits)
+                     .where(deposits: { issued_at: ...date.end_of_day })
                      .group(:id)
                      .sum(:amount_cents)
                      .transform_values do |cents|
-      Money.new(cents, 'RUB')
+      Money.new(cents, 'RUB') || Money.new(0, 'RUB')
     end
   }
 
   scope :by_date, -> { order(issued_at: :desc) }
 
   before_destroy :delete_withdrawals, if: -> { classrooms_student.pass? }
-
 
   def self.get_deposit_amount_for_classroom_student(student, classroom)
     deposits_for_classroom_student(student, classroom).sum(&:amount)
