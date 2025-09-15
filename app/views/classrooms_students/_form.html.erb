@@ -12,7 +12,7 @@
     <% if can_change_payment_type?(classrooms_student, @left_deposits[classrooms_student.id]) %>
       <%= f.submit 'сохранить', class: 'submit-button' %>
     <% else %>
-        <div class="text-warning">Невозможно поменять тип оплаты пока у ученика есть остаток депозита</div>
+        <div class="text-warning">Невозможно поменять тип оплаты, пока у ученика есть остаток депозита</div>
     <% end %>
   </div>
 <% end %>

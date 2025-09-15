@@ -15,4 +15,9 @@ module ClassroomsHelper
       'single' => 'индивидуально'
     }[class_format]
   end
+
+  def classroom_status_decorator(classroom)
+    return { submit_text: 'удалить класс', new_status: 'inactive', class: 'button-alert' } if classroom.active?
+    { submit_text: 'восстановить класс', new_status: 'active', class: 'button-success' } if classroom.inactive?
+  end
 end
