@@ -113,8 +113,16 @@ nav {
 }
 
 .tag {
-  @apply bg-accent-light text-text-dark text-[12px] px-2 py-0.5 rounded-full;
+  @apply text-[12px] px-2 py-0.5 rounded-full;
   border: none; /* убираем рамку */
+
+  &[active] {
+    @apply bg-accent-light;
+  }
+
+  &[inactive] {
+    @apply bg-secondary;
+  }
 }
 
 .header {

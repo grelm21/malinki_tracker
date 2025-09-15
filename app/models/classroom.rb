@@ -12,4 +12,5 @@ class Classroom < ApplicationRecord
   enum :class_format, %i[multi single], default: :single
 
   scope :with_lesson_on_date, ->(date) { where('schedule && ARRAY[?]::text[]', [date.wday.to_s]) }
+  scope :active, -> { where(status: :active) }
 end

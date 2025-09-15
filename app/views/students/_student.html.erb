@@ -23,30 +23,34 @@
           </div>
           <%= render "classrooms/status_form", classroom:, student: %>
           <div class='tags_wrapper justify-start'>
-            <div class='tag'>
+            <div class='tag' <%= classroom.status %> >
               <%= classroom.length%> мин.
             </div>
-            <div class='tag'>
+            <div class='tag' <%= classroom.status %>>
               <%= classroom.schedule.map { |d| t('date.abbr_day_names')[d.to_i] }.join(" ") %>
             </div>
-            <div class='tag'>
+            <div class='tag' <%= classroom.status %>>
               <%= humanized_money_with_symbol classroom.wage %>
             </div>
           </div>
-          <%= render 'classrooms_students/form', classrooms_student: classrooms_students_from_classroom(classroom, student) %>
+          <% if classroom.active? %>
+            <%= render 'classrooms_students/form', classrooms_student: classrooms_students_from_classroom(classroom, student) %>
+          <% end %>
           <% if classrooms_students_from_classroom(classroom, student).pass? %>
-            <div class='header'>остаток: <%= humanized_money_with_symbol @left_deposits[classrooms_students_from_classroom(classroom, student).id] %></div>
+            <% if classroom.active? %>
+              <div class='header'>остаток: <%= humanized_money_with_symbol @left_deposits[classrooms_students_from_classroom(classroom, student).id] %></div>
+            <% end %>
             <div class='flex justify-center font-bold color-text-dark'>последние абонементы</div>
             <div class="deposits-wrapper">
               <%= render classroom.classrooms_students.where(student:).first.deposits.by_date.limit(8) %>
             </div>
-            <%= render 'deposits/form', classrooms_student: classrooms_students_from_classroom(classroom, student), deposit: Deposit.new, action_name: :new %>
+            <%= render 'deposits/form', classrooms_student: classrooms_students_from_classroom(classroom, student), deposit: Deposit.new, action_name: :new if classroom.active? %>
           <% end %>
           <div class='flex justify-center font-bold color-text-dark'>последние занятия</div>
           <div class="withdrawals-wrapper">
             <%= render classroom.classrooms_students.where(student:).first.withdrawals.by_date.limit(16) %>
           </div>
-          <%= render 'withdrawals/form', classrooms_student: classrooms_students_from_classroom(classroom, student), withdrawal: Withdrawal.new, teacher: classroom.teacher %>
+          <%= render 'withdrawals/form', classrooms_student: classrooms_students_from_classroom(classroom, student), withdrawal: Withdrawal.new, teacher: classroom.teacher if classroom.active? %>
         </div>
         <%= render "classrooms/edit_modal", classroom:, student: %>
       <% end %>
