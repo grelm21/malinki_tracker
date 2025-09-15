@@ -6,11 +6,16 @@ class PagesController < ApplicationController
   def dashboard
     @teacher = current_user.teacher
 
+    @raw_classrooms = @teacher.classrooms.includes(:students)
+
+    @left_deposits_sum_up_to_date = LeftDepositService.new(@teacher.classrooms, @date).call
+
     # TODO: перенести в отдельный сервис после дебага
-    @classrooms = @teacher.classrooms.includes(:students).with_lesson_on_date(@date)
-    @left_deposits = LeftDepositService.new(@classrooms).call
+    @classrooms = @raw_classrooms.with_lesson_on_date(@date).active
+    @left_deposits = LeftDepositService.new(@classrooms.unscope(where: :active)).call
 
     @sum_for_day = @teacher.withdrawals.sum_for_day(@date)
+    @sum_for_week = @teacher.withdrawals.sum_for_week(@date)
     @sum_for_month = @teacher.withdrawals.sum_for_month(@date)
   end
 

@@ -1,0 +1,5 @@
+<%= form_with(model: classroom, local: true, html: {class: 'flex gap-x-2 items-center'}) do |form| %>
+  <%= form.hidden_field :status, value: classroom_status_decorator(classroom)[:new_status] %>
+  <%= hidden_field_tag :student_id, student.id %>
+  <%= form.submit classroom_status_decorator(classroom)[:submit_text], class: classroom_status_decorator(classroom)[:class], disabled: !can_change_payment_type?(ClassroomsStudent.find_by(classroom:, student:), @left_deposits[ClassroomsStudent.find_by(classroom:, student:).id]) && classroom.active? %>
+<% end %>
